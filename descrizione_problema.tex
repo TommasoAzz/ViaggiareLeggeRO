@@ -1,0 +1,75 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Descrizione del problema}
+Il sito web ``Viaggiare LeggeRO" si occupa di analizzare i prezzi delle compagnie di trasporto (in particolar modo ferroviarie e di autobus) per fornire
+ai visitatori la miglior scelta per risparmiare.\\ \\
+Gli studenti fuori sede sono il suo principale target: l'obiettivo è pianificare per loro quanti viaggi fare, con quali compagnie e quando, cercando di far loro
+risparmiare il più possibile (rientrando nei budget da loro espressi) e al tempo stesso minimizzando la durata complessiva del tempo trascorso in viaggio.\\
+In questo problema, per \textit{viaggio} si intende la coppia di tratte di andata e di ritorno.\\ \\
+Ai visitatori che accedono al sito vengono richiesti:
+\begin{itemize}
+    \item la città di partenza (per l'andata), che al ritorno corrisponde alla città di arrivo;
+    \item la citta di arrivo (per l'andata), che al ritorno corrisponde alla città di partenza;
+    \item il numero minimo di viaggi che si vogliono pianificare;
+    \item il budget massimo per tutti i viaggi (in euro);
+    \item la durata massima per la singola tratta (in ore);
+    \item il tempo massimo (in ore) aggiuntivo per la singola tratta pur di rientrare nel budget.
+\end{itemize}
+
+Per ogni compagnia di trasporti che lo permette, il sito web è in possesso dei seguenti dati:
+\begin{itemize}
+    \item il prezzo di ogni tratta disponibile (in euro) da una città di partenza a una di arrivo;
+    \item la durata di ogni tratta disponibile (in ore)  da una città di partenza a una di arrivo;
+    \item se offre buoni sconto per incentivare l'acquisto di biglietti, di quale valore (in euro) e dopo quanti biglietti acquistati, oppure no.
+\end{itemize}
+Ovviamente una compagnia che emette buoni sconto lo fa per incentivare l'acquisto dei propri biglietti, quindi un buono sconto emesso dalla compagnia \textit{A} non può essere usato per acquistare biglietti della compagnia \textit{B}.
+Inoltre, per semplicità, ogni compagnia può emettere solo un buono sconto per pianificazione.
+
+Viene fornito un esempio di ricerca effettuata da un utente del sito web:
+\begin{itemize}
+    \item \textbf{città di partenza}: Padova;
+    \item \textbf{città di arrivo}: Torino;
+    \item \textbf{numero minimo di viaggi}: 6;
+    \item \textbf{budget massimo per tutti i viaggi}: 250 euro;
+    \item \textbf{durata massima per la singola tratta}: 5 ore;
+    \item \textbf{tempo massimo aggiuntivo per la singola tratta pur di rientrare nel budget}: 0.5 ore (mezz'ora);
+\end{itemize}
+
+\clearpage
+
+Per la tratta Padova $\rightarrow$ Torino il sito ha a disposizione i seguenti dati:
+
+{
+\renewcommand{\arraystretch}{2}
+\begin{longtable}[h]{c | c | c | c | c | c | c | c}
+Compagnia di trasporto & 1     & 2     & 3     & 4     & 5     & 6     & 7     \\
+\hline
+Trenia                 & \e{22.90} & \e{37.90} & \e{22.90} & \e{45.90} & \e{22.90} &           &           \\
+\hline
+FerrovieItaliane       & \e{26.90} & \e{45.80} & \e{26.90} & \e{31.90} & \e{29.90} & \e{21.90} & \e{19.90} \\
+\hline
+BusTravel              & \e{11.99} & \e{15.99} & \e{13.99} &           &           &           &           \\
+\hline
+FastBus                & \e{13.90} & \e{16.90} & \e{12.90} & \e{10.90} &           &           &           \\
+\end{longtable}
+}
+
+Mentre, per la tratta Torino $\rightarrow$ Padova, ha a disposizione i seguenti dati:
+
+{
+\renewcommand{\arraystretch}{2}
+\begin{longtable}[h]{c | c | c | c | c | c | c | c}
+Compagnia di trasporto & 1     & 2     & 3     & 4     & 5     & 6     & 7     \\
+\hline
+Trenia                 & \e{34.90} & \e{37.90} & \e{32.90} & \e{17.90} & \e{22.90} & \e{17.90} & \e{16.90} \\
+\hline
+FerrovieItaliane       & \e{25.90} & \e{23.90} & \e{26.90} & \e{20.90} & \e{19.90} &           &           \\
+\hline
+BusTravel              & \e{15.99} & \e{15.99} & \e{11.99} & \e{13.99} & \e{11.99} & \e{10.99} &           \\
+\hline
+FastBus                & \e{11.90} & \e{12.90} & \e{9.90}  & \e{15.90} & \e{13.90} &           &           \\
+\end{longtable}
+}
+
+\end{document}

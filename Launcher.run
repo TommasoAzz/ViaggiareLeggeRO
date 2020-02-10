@@ -1,0 +1,22 @@
+# Progetto di Ricerca Operativa, A.A. 2019/2020
+# Tommaso Azzalin, matricola: 1169740
+#
+# Modello del problema "Viaggiare LeggeRO"
+
+# Pulizia della memoria
+reset;
+
+# Caricamento del modello
+model Modello.mod;
+
+# Caricamento dei dati
+# data Dati.dat;
+
+# Caricamento del solver
+option solver cplex;
+
+# Soluzione del problema
+# solve;
+
+# Display delle soluzioni
+# display x;

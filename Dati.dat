@@ -1,0 +1,52 @@
+# Progetto di Ricerca Operativa, A.A. 2019/2020
+# Tommaso Azzalin, matricola: 1169740
+#
+# Modello del problema "Viaggiare LeggeRO"
+
+# INSIEMI DEL PROBLEMA
+set T := Trenia, FerrovieItaliane, BusTravel;
+set C : = 1...10;
+set V := Andata, Ritorno;
+
+# PARAMETRI (COSTANTI DELL'ISTANZA DEL PROBLEMA)
+param p :=
+[*,*, Andata]: 1 2 3 4 5 6 7 8 9 10 :=
+Trenia
+FerrovieItaliane
+BusTravel
+[*,*, Ritorno]: 1 2 3 4 5 6 7 8 9 10 :=
+Trenia
+FerrovieItaliane
+BusTravel;
+# mettere ; alla fine
+param d :=
+[*,*, Andata]: 1 2 3 4 5 6 7 8 9 10 :=
+Trenia
+FerrovieItaliane
+BusTravel
+[*,*, Ritorno]: 1 2 3 4 5 6 7 8 9 10 :=
+Trenia
+FerrovieItaliane
+BusTravel;
+# mettere ; alla fine
+param b := 40;
+
+param B := 450;
+
+param D := 5;
+
+param N := 12;
+
+# Numero di viaggi necessari per l'emissione della Gift Card da parte della compagnia t in T
+param nViaggiGC :=
+Trenia 5
+FerrovieItaliane 10
+BusTravel 0;
+
+# Valore della Gift Card emessa da parte della compagna t in T
+param vScontoGC :=
+Trenia 20
+FerrovieItaliane 10
+BusTravel 0;
+
+param M := 1000000;
