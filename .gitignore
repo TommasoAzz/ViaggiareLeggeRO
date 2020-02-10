@@ -1,3 +1,6 @@
+# Visual Studio Code
+.vscode/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
