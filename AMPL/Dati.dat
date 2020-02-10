@@ -4,49 +4,57 @@
 # Modello del problema "Viaggiare LeggeRO"
 
 # INSIEMI DEL PROBLEMA
-set T := Trenia, FerrovieItaliane, BusTravel;
-set C : = 1...10;
+set T := Trenia, FerrovieItaliane, BusTravel, FastBus;
+set C := 1, 2, 3, 4, 5, 6, 7;
 set V := Andata, Ritorno;
 
 # PARAMETRI (COSTANTI DELL'ISTANZA DEL PROBLEMA)
 param p :=
-[*,*, Andata]: 1 2 3 4 5 6 7 8 9 10 :=
-Trenia
-FerrovieItaliane
-BusTravel
-[*,*, Ritorno]: 1 2 3 4 5 6 7 8 9 10 :=
-Trenia
-FerrovieItaliane
-BusTravel;
-# mettere ; alla fine
-param d :=
-[*,*, Andata]: 1 2 3 4 5 6 7 8 9 10 :=
-Trenia
-FerrovieItaliane
-BusTravel
-[*,*, Ritorno]: 1 2 3 4 5 6 7 8 9 10 :=
-Trenia
-FerrovieItaliane
-BusTravel;
-# mettere ; alla fine
-param b := 40;
 
-param B := 450;
+[*,*, Andata]:   1     2     3     4     5     6     7     :=
+Trenia           22.90 37.90 22.90 45.90 22.90
+FerrovieItaliane 26.90 45.80 26.90 31.90 29.90 21.90 19.90
+BusTravel        11.99 15.99 13.99
+FastBus          13.90 16.90 12.90 10.90
+
+[*,*, Ritorno]:  1     2     3     4     5     6     7     :=
+Trenia           34.90 37.90 32.90 17.90 22.90 17.90 16.90
+FerrovieItaliane 25.90 23.90 26.90 20.90 19.90
+BusTravel        15.99 15.99 11.99 13.99 11.99 10.99
+FastBus          11.90 12.90 9.90  15.90 13.90;
+
+param d :=
+
+[*,*, Andata]:   1    2    3    4    5    6    7    :=
+Trenia           4.00 4.00 4.50 4.00 4.00
+FerrovieItaliane 3.00 3.25 3.50 4.00 3.75 3.50 3.50
+BusTravel        5.00 5.30 4.80
+FastBus          5.10 5.00 5.30 5.00
+
+[*,*, Ritorno]:  1    2    3    4    5    6    7    :=
+Trenia           4.00 4.00 4.00 4.50 4.00 4.50
+FerrovieItaliane 3.60 3.25 3.00 4.00 3.50
+BusTravel        5.50 4.60 5.50 5 5.60 6
+FastBus          5.00 5.50 4.60 6.00 5.00;
+
+param B := 250;
 
 param D := 5;
 
-param N := 12;
+param N := 6;
 
 # Numero di viaggi necessari per l'emissione della Gift Card da parte della compagnia t in T
 param nViaggiGC :=
 Trenia 5
-FerrovieItaliane 10
-BusTravel 0;
+FerrovieItaliane 4
+BusTravel 0
+FastBus 0;
 
 # Valore della Gift Card emessa da parte della compagna t in T
 param vScontoGC :=
-Trenia 20
+Trenia 15
 FerrovieItaliane 10
-BusTravel 0;
+BusTravel 10
+FastBus 0;
 
 param M := 1000000;
