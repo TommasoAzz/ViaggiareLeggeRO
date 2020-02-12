@@ -31,7 +31,7 @@ Viene fornito un esempio di ricerca effettuata da un utente del sito web:
     \item \textbf{città di partenza}: Padova;
     \item \textbf{città di arrivo}: Torino;
     \item \textbf{numero minimo di viaggi}: 6;
-    \item \textbf{budget massimo per tutti i viaggi}: 250 euro;
+    \item \textbf{budget massimo per tutti i viaggi}: 200 euro;
     \item \textbf{durata massima per la singola tratta}: 5 ore;
     \item \textbf{tempo massimo aggiuntivo per la singola tratta pur di rientrare nel budget}: 0.5 ore (mezz'ora);
 \end{itemize}
@@ -51,7 +51,8 @@ La compagnia FerrovieItaliane offre un buono sconto di \e{10} dopo l'acquisto di
 La compagnia BusTravel è appena entrata nel mercato italiano e per autopromuoversi offre un buono sconto di \e{10} fin dal primo acquisto (quindi acquistando il primo biglietto si può già usare il buono sconto);
 La compagnia FastBus non offre buoni sconto.
 
-Si presentano adesso dei dati di esempio a disposizione del sito per le tratte Padova $\leftrightarrow$ Torino (Padova $\rightarrow$ Torino e Torino $\rightarrow$ Padova).
+Si presentano adesso dei dati di esempio a disposizione del sito per le tratte Padova $\leftrightarrow$ Torino (Padova $\rightarrow$ Torino e Torino $\rightarrow$ Padova).\\
+\textbf{N.B.} Le celle contenenti ``n.d." indicano un'assenza della corsa.
 
 \subsubsection*{Padova $\rightarrow$ Torino: costi della tratta}
 {
@@ -59,13 +60,13 @@ Si presentano adesso dei dati di esempio a disposizione del sito per le tratte P
 \begin{longtable}[h]{c | c | c | c | c | c | c | c}
 Compagnia di trasporto & 1         & 2         & 3         & 4         & 5         & 6         & 7         \\
 \hline
-Trenia                 & \e{22.90} & \e{37.90} & \e{22.90} & \e{45.90} & \e{22.90} &           &           \\
+Trenia                 & \e{22.90} & \e{37.90} & \e{22.90} & \e{45.90} & \e{22.90} & n.d.      & n.d.      \\
 \hline
 FerrovieItaliane       & \e{26.90} & \e{45.80} & \e{26.90} & \e{31.90} & \e{29.90} & \e{21.90} & \e{19.90} \\
 \hline
-BusTravel              & \e{11.99} & \e{15.99} & \e{13.99} &           &           &           &           \\
+BusTravel              & \e{11.99} & \e{15.99} & \e{13.99} & n.d.      & n.d.      & n.d.      & n.d.      \\
 \hline
-FastBus                & \e{13.90} & \e{16.90} & \e{12.90} & \e{10.90} &           &           &           \\
+FastBus                & \e{13.90} & \e{16.90} & \e{12.90} & \e{10.90} & n.d.      & n.d.      & n.d.      \\
 \end{longtable}
 }
 
@@ -73,15 +74,15 @@ FastBus                & \e{13.90} & \e{16.90} & \e{12.90} & \e{10.90} &        
 {
 \renewcommand{\arraystretch}{2}
 \begin{longtable}[h]{c | c | c | c | c | c | c | c}
-Compagnia di trasporto & 1     & 2      & 3     & 4   & 5      & 6     & 7     \\
+Compagnia di trasporto & 1     & 2      & 3     & 4    & 5      & 6     & 7     \\
 \hline
-Trenia                 & 4 h   & 4 h    & 4.5 h & 4 h & 4 h    &       &       \\
+Trenia                 & 4 h   & 4 h    & 4.5 h & 4 h  & 4 h    & n.d.  & n.d.  \\
 \hline
-FerrovieItaliane       & 3 h   & 3.25 h & 3.5 h & 4 h & 3.75 h & 3.5 h & 3.5 h \\
+FerrovieItaliane       & 3 h   & 3.25 h & 3.5 h & 4 h  & 3.75 h & 3.5 h & 3.5 h \\
 \hline
-BusTravel              & 5 h   & 5.3 h  & 4.8 h &     &        &       &       \\
+BusTravel              & 5 h   & 5.3 h  & 4.8 h & n.d. & n.d.   & n.d.  & n.d.  \\
 \hline
-FastBus                & 5.1 h & 5 h    & 5.3 h & 5 h &        &       &       \\
+FastBus                & 5.1 h & 5 h    & 5.3 h & 5 h  & n.d.   & n.d.  & n.d.  \\
 \end{longtable}
 }
 
@@ -93,11 +94,11 @@ Compagnia di trasporto & 1         & 2         & 3         & 4         & 5      
 \hline
 Trenia                 & \e{34.90} & \e{37.90} & \e{32.90} & \e{17.90} & \e{22.90} & \e{17.90} & \e{16.90} \\
 \hline
-FerrovieItaliane       & \e{25.90} & \e{23.90} & \e{26.90} & \e{20.90} & \e{19.90} &           &           \\
+FerrovieItaliane       & \e{25.90} & \e{23.90} & \e{26.90} & \e{20.90} & \e{19.90} & n.d.      & n.d.      \\
 \hline
-BusTravel              & \e{15.99} & \e{15.99} & \e{11.99} & \e{13.99} & \e{11.99} & \e{10.99} &           \\
+BusTravel              & \e{15.99} & \e{15.99} & \e{11.99} & \e{13.99} & \e{11.99} & \e{10.99} & n.d.      \\
 \hline
-FastBus                & \e{11.90} & \e{12.90} & \e{9.90}  & \e{15.90} & \e{13.90} &           &           \\
+FastBus                & \e{11.90} & \e{12.90} & \e{9.90}  & \e{15.90} & \e{13.90} & n.d.      & n.d.      \\
 \end{longtable}
 }
 
@@ -105,15 +106,15 @@ FastBus                & \e{11.90} & \e{12.90} & \e{9.90}  & \e{15.90} & \e{13.9
 {
 \renewcommand{\arraystretch}{2}
 \begin{longtable}[h]{c | c | c | c | c | c | c | c}
-Compagnia di trasporto & 1     & 2      & 3     & 4   & 5     & 6   & 7     \\
+Compagnia di trasporto & 1     & 2      & 3     & 4   & 5     & 6    & 7     \\
 \hline
-Trenia                 & 4 h   & 4 h    & 4 h   & 4 h & 4.5 h & 4 h & 4.5 h \\
+Trenia                 & 4 h   & 4 h    & 4 h   & 4 h & 4.5 h & 4 h  & 4.5 h \\
 \hline
-FerrovieItaliane       & 3.6 h & 3.25 h & 3 h   & 4 h & 3.5 h &     &       \\
+FerrovieItaliane       & 3.6 h & 3.25 h & 3 h   & 4 h & 3.5 h & n.d. & n.d.  \\
 \hline
-BusTravel              & 5.5 h & 4.6 h  & 5.5 h & 5 h & 5.6 h & 6 h &       \\
+BusTravel              & 5.5 h & 4.6 h  & 5.5 h & 5 h & 5.6 h & 6 h  & n.d.  \\
 \hline
-FastBus                & 5 h   & 5.5 h  & 4.6 h & 6 h & 5 h   &     &       \\
+FastBus                & 5 h   & 5.5 h  & 4.6 h & 6 h & 5 h   & n.d. & n.d.  \\
 \end{longtable}
 }
 
