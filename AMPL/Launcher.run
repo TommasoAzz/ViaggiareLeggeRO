@@ -16,7 +16,15 @@ data Dati.dat;
 option solver cplex;
 
 # Soluzione del problema
-# solve;
+solve;
 
 # Display delle soluzioni
-# display x;
+printf("Pianificazione ottima\n");
+printf("Corse che rientrano nel budget e che permettono il minor tempo\n");
+display x;
+printf("Tempo aggiuntivo richiesto per alcune corse\n");
+display w;
+printf("Gift card usate\n");
+display z;
+printf("Denaro da spendere\n");
+display b;

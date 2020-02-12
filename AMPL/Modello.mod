@@ -42,7 +42,7 @@ param nViaggiGC{T};
 param vScontoGC{T};
 
 # Tempo aggiuntivo richiesto per almeno un viaggio pur di rientrare nel budget richiesto
-param tempoAgg;
+param tempoAgg >= 0;
 
 # Big M
 param M >= 0;
@@ -80,7 +80,7 @@ minimize tempoTotaleViaggi:
 
 # La suddivisione del budget per acquistare biglietti fra le tre compagnie deve sommare a B
 s.t. suddivisioneBudget:
-	sum{t in T} b[t] = B;
+	sum{t in T} b[t] <= B;
 
 # Va rispettato il budget complessivo per tutti i viaggi
 s.t. budgetTotale{t in T}:
@@ -88,7 +88,7 @@ s.t. budgetTotale{t in T}:
 
 # Selezione delle corse che possono essere acquistate poiché rispettano il tempo massimo per corsa richiesto
 s.t. sceltaCorse{t in T, c in C, v in V}:
-	d[t, c, v] * y[t, c, v] <= D;
+	d[t, c, v] * y[t, c, v] <= D + tempoAgg * w;
 
 # Rispetto del minimo numero di viaggi che devo essere fatti nel periodo considerato
 s.t. minimoNumeroViaggi{v in V}:
