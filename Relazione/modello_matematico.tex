@@ -4,6 +4,7 @@
 \section{Modello matematico}
 In questa sezione viene illustrato il modello matematico di Programmazione Lineare utilizzato per la risoluzione del problema descritto nella precedente sezione.\\
 Questo modello verrà successivamente descritto nel linguaggio di programmazione \textbf{AMPL}.
+
 \subsection*{Insiemi}
 Per questo problema vengono individuati tre insiemi:
 \begin{itemize}
@@ -16,6 +17,7 @@ Per i dati di esempio della sezione §2.2:
     \item $T = \{Trenia, FerrovieItaliane, BusTravel, FastBus\}$;
     \item $C = \{1, 2, 3, 4, 5, 6, 7\}$.
 \end{itemize}
+
 \subsection*{Variabili}
 Le variabili individuate sono le seguenti (in ordine alfabetico):
 \begin{itemize}
@@ -38,6 +40,7 @@ Le variabili individuate sono le seguenti (in ordine alfabetico):
     \end{cases} } \end{math}
 \end{itemize}
 \textbf{N.B.} $0 \in \mathbb{R}_+, \mathbb{Z}_+$.
+
 \subsection*{Parametri}
 I parametri richiesti per poter risolvere il problema sono i seguenti:
 \begin{itemize}
@@ -51,4 +54,20 @@ I parametri richiesti per poter risolvere il problema sono i seguenti:
     \item $tempoAgg \in \mathbb{R}_+$, corrispondente al tempo aggiuntivo richiesto per almeno un viaggio pur di rientrare nel budget;
     \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.
 \end{itemize}
+
+\subsection*{Modello}
+Funzione obiettivo
+$$min \sum_{t\; \in\; T} \sum_{c\; \in\; C} \sum_{v\; \in\; V} d_{t,c,v} \times{} x_{t,c,v}$$
+Il budget totale a disposizione viene diviso per tutte le compagnie (è necessario per applicare correttamente gli sconti dati dalle gift card)
+$$\sum_{t\; \in\; T} b_t \leq B$$
+Va rispettato il budget complessivo per tutti i viaggi acquistati, tenendo conto della possibilità di usare le gift card
+$$\sum_{c\; \in\; C} \sum_{v\; \in\; V} p_{t,c,v} \times{} x_{t,c,v} = b_t + vScontoGC_t \times{} z_t \hspace{10mm} \forall{} t \in T$$
+Possono essere scelte solo le corse che rispettano il tempo massimo per corsa richiesto (eventualmente considerando la possibilità di aggiungere del tempo)
+$$d_{t,c,v} \times{} y_{t,c,v} \leq D + tempoAgg \times w \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
+Devono essere pianificati esattamente tanti viaggi quanti richiesti
+$$\sum_{t\; \in\; T} \sum_{c\; \in\; C} x_{t,c,v} = N \hspace{10mm} \forall{} v \in V$$
+Attivazione delle variabili binarie (creazione di un legame fra $x$ e $y$, infatti $\nexists y_{t,c,v}, \nexists x_{t,c,v}\; t.c.\; y_{t,c,v} = 0, x_{t,c,v} > 0\; \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$)
+$$x_{t,c,v} \leq y_{t,c,v} \times{} M \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
+Emissione delle gift card
+$$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \geq nViaggiGC_t \times z_t \hspace{10mm} \forall{} t \in T$$
 \end{document}
