@@ -84,13 +84,13 @@ s.t. suddivisioneBudget:
 
 # Va rispettato il budget complessivo per tutti i viaggi
 s.t. budgetTotale{t in T}:
-	sum{c in C} sum{v in V} p[t, c, v] * x[t, c, v] <= b[t] + vScontoGC[t] * z[t];
+	sum{c in C} sum{v in V} p[t, c, v] * x[t, c, v] = b[t] + vScontoGC[t] * z[t];
 
 # Selezione delle corse che possono essere acquistate poiché rispettano il tempo massimo per corsa richiesto
 s.t. sceltaCorse{t in T, c in C, v in V}:
 	d[t, c, v] * y[t, c, v] <= D + tempoAgg * w;
 
-# Rispetto del minimo numero di viaggi che devo essere fatti nel periodo considerato
+# Rispetto del numero di viaggi che devo essere fatti nel periodo considerato
 s.t. minimoNumeroViaggi{v in V}:
 	sum{t in T} sum{c in C} x[t, c, v] = N;
 

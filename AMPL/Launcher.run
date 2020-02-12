@@ -3,6 +3,8 @@
 #
 # Modello del problema "Viaggiare LeggeRO"
 
+printf "Viaggiare LeggeRO\n-----------------\n\n";
+
 # Pulizia della memoria
 reset;
 
@@ -19,12 +21,18 @@ option solver cplex;
 solve;
 
 # Display delle soluzioni
-printf("Pianificazione ottima\n");
-printf("Corse che rientrano nel budget e che permettono il minor tempo\n");
+printf "\nPianificazione ottima\n";
+printf "\nDistribuzione della selezione delle corse\n";
 display x;
-printf("Tempo aggiuntivo richiesto per alcune corse\n");
-display w;
-printf("Gift card usate\n");
-display z;
-printf("Denaro da spendere\n");
-display b;
+
+if w = 1 then
+printf "\nPer alcune corse è stato necessario il tempo aggiuntivo di %.2f alle %.2f ore richieste per rientrare nel budget.\n", tempoAgg, D;
+
+printf "\nSpesa per compagnia:\n";
+for {t in T} {
+    if b[t] > 0 then
+        printf "- %s: %.2f euro ", t, b[t];
+    if z[t] > 0 then
+        printf "(usando la gift card di %.2f euro)", vScontoGC[t];
+    printf "\n";
+}
