@@ -2,5 +2,53 @@
 \begin{document}
 
 \section{Modello matematico}
-
+In questa sezione viene illustrato il modello matematico di Programmazione Lineare utilizzato per la risoluzione del problema descritto nella precedente sezione.\\
+Questo modello verrà successivamente descritto nel linguaggio di programmazione \textbf{AMPL}.
+\subsection*{Insiemi}
+Per questo problema vengono individuati tre insiemi:
+\begin{itemize}
+    \item $T$, l'insieme delle compagnie di trasporto;
+    \item $C$, l'insieme delle possibili corse di una compagnia. Corrisponde alla cardinalità massima fra tutte le cardinalità delle corse disponibili per una compagnia;
+    \item $V$, l'insieme dei versi di una tratta. È fisso: $V = \{Andata, Ritorno \}$.
+\end{itemize}
+Per i dati di esempio della sezione §2.2:
+\begin{itemize}
+    \item $T = \{Trenia, FerrovieItaliane, BusTravel, FastBus\}$;
+    \item $C = \{1, 2, 3, 4, 5, 6, 7\}$.
+\end{itemize}
+\subsection*{Variabili}
+Le variabili individuate sono le seguenti (in ordine alfabetico):
+\begin{itemize}
+    \item $b_t \in \mathbb{R}_+$, corrispondente all'ammontare del budget totale impiegato per la compagnia $t \in T$
+    \item $w =$ 
+    \begin{math} { \begin{cases}
+        1, & necessario\; pi\grave{u}\; tempo\; aggiuntivo\; per\; almeno\; una\; corsa\; per\; rientrare\; nel\; budget \\
+        0, & non\; necessario\; pi\grave{u}\; tempo\; per\; almeno\; una\; corsa\; per\; rientrare\; nel\; budget
+    \end{cases} } \end{math}
+    \item $x_{t,c,v} \in \mathbb{Z}_+$, corrispondente al numero di volte in cui è stata scelta la corsa $c \in C$ della compagnia $t \in T$ nel verso $v \in V$
+    \item $y_{t,c,v} =$
+    \begin{math} { \begin{cases}
+        1, & la\; corsa\; \text{$c \in C$}\; della\; compagnia\; \text{$t \in T$}\; nel\; verso\; \text{$v \in V$}\; pu\grave{o}\; essere\; scelta \\
+        0, & la\; corsa\; \text{$c \in C$}\; della\; compagnia\; \text{$t \in T$}\; nel\; verso\; \text{$v \in V$}\; non\; pu\grave{o}\; essere\; scelta
+    \end{cases} } \end{math}
+    \item $z_t =$
+    \begin{math} { \begin{cases}
+        1, & la\; gift\; card\; della\; compagnia\; \text{$t \in T$}\; viene\; emessa \\
+        0, & la\; gift\; card\; della\; compagnia\; \text{$t \in T$}\; non\; viene\; emessa 
+    \end{cases} } \end{math}
+\end{itemize}
+\textbf{N.B.} $0 \in \mathbb{R}_+, \mathbb{Z}_+$.
+\subsection*{Parametri}
+I parametri richiesti per poter risolvere il problema sono i seguenti:
+\begin{itemize}
+    \item $p_{t,c,v} \in \mathbb{R}_+$, corrispondente al prezzo della corsa (in euro) $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$;
+    \item $d_{t,c,v} \in \mathbb{R}_+$, corrispondente alla durata della corsa (in ore) $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$ (essendo in ore, due ore e mezza (2h30), ad esempio, si indicano come 2.5 ore);
+    \item $B \in \mathbb{R}_+$, corrispondente al budget massimo (in euro) per tutti i viaggi da pianificare;
+    \item $D \in \mathbb{R}_+$, corrispondente alla durata massima (in ore) di una tratta;
+    \item $N \in \mathbb{Z}_+$, corrispondente al numero di viaggi da pianificare;
+    \item $nViaggiGC_t \in \mathbb{Z}_+$, corrispondente al numero di viaggi necessari per l'emissione della gift card da parte della compagnia $t \in T$;
+    \item $vScontoGC_t \in \mathbb{R}_+$, corrispondente al valore della gift card emessa da parte della compagna $t \in T$;
+    \item $tempoAgg \in \mathbb{R}_+$, corrispondente al tempo aggiuntivo richiesto per almeno un viaggio pur di rientrare nel budget;
+    \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.
+\end{itemize}
 \end{document}
