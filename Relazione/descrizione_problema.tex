@@ -5,9 +5,9 @@
 \subsection{Il problema}
 Il sito web ``Viaggiare LeggeRO" si occupa di analizzare i prezzi delle compagnie di trasporto (in particolar modo ferroviarie e di autobus) per fornire
 ai visitatori la miglior scelta possibile per risparmiare tempo e denaro.\\ \\
-Gli studenti fuori sede sono il suo principale target: l'obiettivo è pianificare per loro quanti viaggi fare, con quali compagnie e quando, cercando di far loro
-risparmiare il più possibile (rientrando nei budget da loro espressi) e al tempo stesso minimizzando la durata complessiva del tempo trascorso in viaggio.\\
-In questo problema, per \textit{viaggio} si intende la coppia tratta di andata - tratta di ritorno.\\ \\
+Gli studenti fuori sede sono il suo principale target: l'obiettivo è pianificare tanti viaggi quanti ne richiedono, scegliendo le corse e le compagnie, 
+rientrando nel budget da loro espresso e al tempo stesso minimizzando la durata complessiva del tempo trascorso in viaggio.\\
+\textbf{N.B.} In questo problema, per \textit{viaggio} si intende la coppia \textit{tratta di andata} - \textit{tratta di ritorno}.\\ \\
 Ai visitatori che accedono al sito vengono richiesti:
 \begin{itemize}
     \item la città di partenza, per l'andata, che al ritorno corrisponde alla città di arrivo;
@@ -24,8 +24,22 @@ Per ogni compagnia di trasporti che lo permette, il sito web è in possesso dei 
     \item se offre buoni sconto per incentivare l'acquisto dei propri biglietti, di quale valore vengono emessi (in euro) e quanti biglietti vanno acquistati per ottenerli.
 \end{itemize}
 Ovviamente, una compagnia che emette buoni sconto lo fa per incentivare l'acquisto dei propri biglietti, e non quelli delle altre compagnie. Quindi, un buono sconto emesso dalla compagnia \textit{A} non può essere usato per acquistare biglietti della compagnia \textit{B}.
-Inoltre, per semplicità, attraverso il sito web ogni compagnia può emettere solo un buono sconto per pianificazione.
+Inoltre, per semplicità, attraverso il sito web ogni compagnia può emettere solo un buono sconto per pianificazione.\\ \\
+Il sito dispone attualmente dei dati di quattro compagnie:
+\begin{itemize}
+    \item Trenia;
+    \item FerrovieItaliane;
+    \item BusTravel;
+    \item FastBus.
+\end{itemize}
+La compagnia Trenia offre un buono sconto di \e{15} dopo l'acquisto di 5 biglietti (a un biglietto corrisponde una sola tratta).\\
+La compagnia FerrovieItaliane offre un buono sconto di \e{10} dopo l'acquisto di 4 biglietti.\\
+La compagnia BusTravel è appena entrata nel mercato italiano e per autopromuoversi offre un buono sconto di \e{10} fin dal primo acquisto (quindi acquistando il primo biglietto si può già usare il buono sconto).\\
+La compagnia FastBus non offre buoni sconto.
 
+\clearpage
+
+\subsection{Dati di esempio}
 Viene fornito un esempio di ricerca effettuata da un utente del sito web:
 \begin{itemize}
     \item \textbf{città di partenza}: Padova;
@@ -35,21 +49,6 @@ Viene fornito un esempio di ricerca effettuata da un utente del sito web:
     \item \textbf{durata massima per la singola tratta}: 5 ore;
     \item \textbf{tempo massimo aggiuntivo per la singola tratta pur di rientrare nel budget}: 0.5 ore (mezz'ora);
 \end{itemize}
-
-\clearpage
-
-\subsection{Dati di esempio}
-Il sito dispone dei dati di quattro compagnie:
-\begin{itemize}
-    \item Trenia;
-    \item FerrovieItaliane;
-    \item BusTravel;
-    \item FastBus.
-\end{itemize}
-La compagnia Trenia offre un buono sconto di \e{15} dopo l'acquisto di 5 biglietti (a un biglietto corrisponde una sola tratta).\\
-La compagnia FerrovieItaliane offre un buono sconto di \e{10} dopo l'acquisto di 4 biglietti.\\
-La compagnia BusTravel è appena entrata nel mercato italiano e per autopromuoversi offre un buono sconto di \e{10} fin dal primo acquisto (quindi acquistando il primo biglietto si può già usare il buono sconto);
-La compagnia FastBus non offre buoni sconto.
 
 Si presentano adesso dei dati di esempio a disposizione del sito per le tratte Padova $\leftrightarrow$ Torino (Padova $\rightarrow$ Torino e Torino $\rightarrow$ Padova).\\
 \textbf{N.B.} Le celle contenenti ``n.d." indicano un'assenza della corsa.
