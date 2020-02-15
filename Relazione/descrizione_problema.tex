@@ -15,7 +15,7 @@ Ai visitatori che accedono al sito vengono richiesti:
     \item il numero di viaggi che si vogliono pianificare;
     \item il budget massimo per tutti i viaggi (in euro);
     \item la durata massima per la singola tratta (in ore);
-    \item il tempo massimo (in ore) aggiuntivo per la singola tratta pur di rientrare nel budget.
+    \item il massimo numero di tratte per ogni compagnia, comprensivo di tratte di andata e di ritorno.
 \end{itemize}
 Per ogni compagnia di trasporti che lo permette, il sito web è in possesso dei seguenti dati:
 \begin{itemize}
@@ -37,8 +37,6 @@ La compagnia FerrovieItaliane offre un buono sconto di \e{10} dopo l'acquisto di
 La compagnia BusTravel è appena entrata nel mercato italiano e per autopromuoversi offre un buono sconto di \e{10} fin dal primo acquisto (quindi acquistando il primo biglietto si può già usare il buono sconto).\\
 La compagnia FastBus non offre buoni sconto.
 
-\clearpage
-
 \subsection{Dati di esempio}
 Viene fornito un esempio di ricerca effettuata da un utente del sito web:
 \begin{itemize}
@@ -47,9 +45,23 @@ Viene fornito un esempio di ricerca effettuata da un utente del sito web:
     \item \textbf{numero di viaggi}: 6;
     \item \textbf{budget massimo per tutti i viaggi}: 200 euro;
     \item \textbf{durata massima per la singola tratta}: 5 ore;
-    \item \textbf{tempo massimo aggiuntivo per la singola tratta pur di rientrare nel budget}: 0.5 ore (mezz'ora);
+    \item \textbf{massimo numero di tratte per ogni compagnia}:
+    {
+    \renewcommand{\arraystretch}{2}
+    \begin{longtable}[h]{c | c}
+    \textbf{Compagnia di trasporto} & \textbf{Tratte max.} \\
+    \hline
+    \endhead
+    Trenia                          & 3                    \\
+    \hline
+    FerrovieItaliane                & 3                    \\
+    \hline
+    BusTravel                       & 3                    \\
+    \hline
+    FastBus                         & 3                    \\
+    \end{longtable}
+    }
 \end{itemize}
-
 Si presentano adesso dei dati di esempio a disposizione del sito per le tratte Padova $\leftrightarrow$ Torino (Padova $\rightarrow$ Torino e Torino $\rightarrow$ Padova).\\
 \textbf{N.B.} Le celle contenenti ``n.d." indicano un'assenza della corsa.
 

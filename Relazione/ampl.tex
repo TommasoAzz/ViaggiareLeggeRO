@@ -1,12 +1,39 @@
 \documentclass[main.tex]{subfiles}
+
+\lstdefinelanguage{AMPL}{keywords={set,param,var,arc,integer,minimize,maximize,subject,to,node,sum,in,Current,complements,integer,solve_result_num,IN,contains,less,suffix,INOUT,default,logical,sum,Infinity,dimen,max,symbolic
+,Initial,div,min,table,LOCAL,else,option,then,OUT,environ,setof ,union,all,exists,shell_exitcodeuntil,binary,forall,solve_exitcodewhile ,by,if,solve_messagewithin,check,in,solve_result
+},sensitive=true,comment=[l]{\#}}
+
+\lstset{frame=tb,
+  language=AMPL,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\bfseries,
+  commentstyle=\textit,
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+
+
 \begin{document}
 
 \section{AMPL}
 
 \subsection{Launcher}
+\lstinputlisting[language=AMPL]{../AMPL/Launcher.run}
 
 \subsection{Modello}
+\lstinputlisting[language=AMPL]{../AMPL/Modello.mod}
 
 \subsection{Dati}
+\lstinputlisting[language=AMPL]{../AMPL/Dati.dat}
 
 \end{document}
