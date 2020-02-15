@@ -25,8 +25,8 @@ printf "\nPianificazione ottima\n";
 printf "\nDistribuzione della selezione delle corse\n";
 display x;
 
-if w = 1 then
-printf "\nPer alcune corse è stato necessario il tempo aggiuntivo di %.2f alle %.2f ore richieste per rientrare nel budget.\n", tempoAgg, D;
+printf "\nSpesa totale:\n";
+printf "%.2f euro", sum{t in T} b[t];
 
 printf "\nSpesa per compagnia:\n";
 for {t in T} {

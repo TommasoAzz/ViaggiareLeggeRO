@@ -9,33 +9,33 @@ set C := 1, 2, 3, 4, 5, 6, 7;
 set V := Andata, Ritorno;
 
 # PARAMETRI (COSTANTI DELL'ISTANZA DEL PROBLEMA)
-param p :=
+param p := # impostando M = 1e5, n.d. (del testo del problema) deve corrispondere a un valore maggiore, p.e. 1e6
 
 [*,*, Andata]:   1     2     3     4     5     6     7     :=
-Trenia           22.90 37.90 22.90 45.90 22.90 1e10  1e10
+Trenia           22.90 37.90 22.90 45.90 22.90 1e6   1e6
 FerrovieItaliane 26.90 45.80 26.90 31.90 29.90 21.90 19.90
-BusTravel        11.99 15.99 13.99 1e10  1e10  1e10  1e10
-FastBus          13.90 16.90 12.90 10.90 1e10  1e10  1e10
+BusTravel        11.99 15.99 13.99 1e6   1e6   1e6   1e6
+FastBus          13.90 16.90 12.90 10.90 1e6   1e6   1e6
 
 [*,*, Ritorno]:  1     2     3     4     5     6     7     :=
 Trenia           34.90 37.90 32.90 17.90 22.90 17.90 16.90
-FerrovieItaliane 25.90 23.90 26.90 20.90 19.90 1e10  1e10
-BusTravel        15.99 15.99 11.99 13.99 11.99 10.99 1e10
-FastBus          11.90 12.90 9.90  15.90 13.90 1e10  1e10;
+FerrovieItaliane 25.90 23.90 26.90 20.90 19.90 1e6   1e6
+BusTravel        15.99 15.99 11.99 13.99 11.99 10.99 1e6
+FastBus          11.90 12.90 9.90  15.90 13.90 1e6   1e6;
 
 param d :=
 
 [*,*, Andata]:   1    2    3    4    5    6    7    :=
-Trenia           4.00 4.00 4.50 4.00 4.00 1e10 1e10
+Trenia           4.00 4.00 4.50 4.00 4.00 1e6  1e6
 FerrovieItaliane 3.00 3.25 3.50 4.00 3.75 3.50 3.50
-BusTravel        5.00 5.30 4.80 1e10 1e10 1e10 1e10
-FastBus          5.10 5.00 5.30 5.00 1e10 1e10 1e10
+BusTravel        5.00 5.30 4.80 1e6  1e6  1e6  1e6
+FastBus          5.10 5.00 5.30 5.00 1e6  1e6  1e6
 
 [*,*, Ritorno]:  1    2    3    4    5    6    7    :=
 Trenia           4.00 4.00 4.00 4.00 4.50 4.00 4.50
-FerrovieItaliane 3.60 3.25 3.00 4.00 3.50 1e10 1e10
-BusTravel        5.50 4.60 5.50 5.00 5.60 6.00 1e10
-FastBus          5.00 5.50 4.60 6.00 5.00 1e10 1e10;
+FerrovieItaliane 3.60 3.25 3.00 4.00 3.50 1e6  1e6
+BusTravel        5.50 4.60 5.50 5.00 5.60 6.00 1e6
+FastBus          5.00 5.50 4.60 6.00 5.00 1e6  1e6;
 
 param B := 200;
 
@@ -55,6 +55,10 @@ FerrovieItaliane 10
 BusTravel 10
 FastBus 0;
 
-param tempoAgg := 0.5;
+param maxTratte :=
+Trenia 3
+FerrovieItaliane 3
+BusTravel 3
+FastBus 3;
 
 param M := 1e5;

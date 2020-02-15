@@ -41,8 +41,8 @@ param nViaggiGC{T} >= 0 integer;
 # Valore della Gift Card emessa da parte della compagna t in T
 param vScontoGC{T} >= 0;
 
-# Tempo aggiuntivo richiesto per almeno un viaggio pur di rientrare nel budget
-param tempoAgg >= 0;
+# Numero massimo di corse che possono essere effettuate con la compagnia t in T
+param maxTratte{T} >= 0 integer;
 
 # Big M
 param M >= 0;
@@ -54,15 +54,11 @@ param M >= 0;
 # Budget utilizzato per ogni compagnia
 var b{T} >= 0;
 
-# 1: necessario tempoAgg per almeno una corsa per rientranre nel budget
-# 0: NON necessario tempoAgg per almeno una corsa per rientranre nel budget
-var w binary;
-
-# Numero di volte in cui è stata scelta la corsa c in C della compagnia t in T nel verso v in V
+# Numero di volte in cui viene scelta la corsa c in C della compagnia t in T nel verso v in V
 var x{T, C, V} >= 0 integer;
 
-# 1: La corsa c in C della compagnia t in T nel verso v in V può essere scelta
-# 0: La corsa c in C della compagnia t in T nel verso v in V NON può essere scelta
+# 1: La corsa c in C della compagnia t in T nel verso v in V puo' essere scelta
+# 0: La corsa c in C della compagnia t in T nel verso v in V NON puo' essere scelta
 var y{T, C, V} binary;
 
 # 1: la gift card della compagnia t in T viene emessa
@@ -75,7 +71,6 @@ var z{T} binary;
 
 # Funzione obiettivo (problema di minimo)
 minimize tempoTotaleViaggi:
-	# (sum{t in T} sum{c in C} sum{v in V} p[t, c, v] * x[t, c, v]) - sum{t in T} (vScontoGC[t] * z[t]);
 	sum{t in T} sum{c in C} sum{v in V} (d[t, c, v] * x[t, c, v]);
 
 # La suddivisione del budget per acquistare biglietti fra le tre compagnie deve sommare a B
@@ -86,13 +81,17 @@ s.t. suddivisioneBudget:
 s.t. budgetTotale{t in T}:
 	sum{c in C} sum{v in V} p[t, c, v] * x[t, c, v] = b[t] + vScontoGC[t] * z[t];
 
-# Selezione delle corse che possono essere acquistate poiché rispettano il tempo massimo per corsa richiesto
+# Selezione delle corse che possono essere acquistate dato che rispettano il tempo massimo per corsa richiesto
 s.t. sceltaCorse{t in T, c in C, v in V}:
-	d[t, c, v] * y[t, c, v] <= D + tempoAgg * w;
+	d[t, c, v] * y[t, c, v] <= D;
 
 # Rispetto del numero di viaggi che devo essere fatti nel periodo considerato
 s.t. minimoNumeroViaggi{v in V}:
 	sum{t in T} sum{c in C} x[t, c, v] = N;
+	
+# Rispetto del numero di tratte che si vogliono percorrere con una certa compagnia (0: nessuna, N' (t.c. N' > N): 'qualsiasi') 
+s.t. maxTratteCompagnia{t in T}:
+    sum{c in C} sum{v in V} x[t, c, v] <= maxTratte[t];
 
 # Attivazione delle variabili binarie (non posso avere x > 0 se y = 0)
 s.t. attivazioneVariabiliBinarie{t in T, c in C, v in V}:
