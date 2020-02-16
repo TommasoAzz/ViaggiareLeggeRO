@@ -3,39 +3,61 @@
 #
 # Modello del problema "Viaggiare LeggeRO"
 
-# INSIEMI DEL PROBLEMA
+########################
+# INSIEMI DEL PROBLEMA #
+########################
+
 set T := Trenia, FerrovieItaliane, BusTravel, FastBus;
+
 set C := 1, 2, 3, 4, 5, 6, 7;
+
 set V := Andata, Ritorno;
 
-# PARAMETRI (COSTANTI DELL'ISTANZA DEL PROBLEMA)
-param p := # impostando M = 1e5, n.d. (del testo del problema) deve corrispondere a un valore maggiore, p.e. 1e6
+##################################################
+# PARAMETRI (COSTANTI DELL'ISTANZA DEL PROBLEMA) #
+##################################################
+
+# Ad n.d. (che indica la non esistenza di una corsa per una compagnia in un verso)
+# deve corrispondere, per essere certi che non venga scelta, un prezzo appena superiore
+# al budget a disposizione, in modo che i vincoli suddivisioneBudget e budgetTotale non possono
+# essere rispettati per nemmeno N = 1, ovvero un solo viaggio da pianificare.
+# N.B. In questa istanza 201 basterebbe, viene comunque messo 1e3 per differenziare maggiormente
+# dai reali dati d'istanza del problema.
+
+param p := 
 
 [*,*, Andata]:   1     2     3     4     5     6     7     :=
-Trenia           22.90 37.90 22.90 45.90 22.90 1e6   1e6
+Trenia           22.90 37.90 22.90 45.90 22.90 1e3   1e3
 FerrovieItaliane 26.90 45.80 26.90 31.90 29.90 21.90 19.90
-BusTravel        11.99 15.99 13.99 1e6   1e6   1e6   1e6
-FastBus          13.90 16.90 12.90 10.90 1e6   1e6   1e6
+BusTravel        11.99 15.99 13.99 1e3   1e3   1e3   1e3
+FastBus          13.90 16.90 12.90 10.90 1e3   1e3   1e3
 
 [*,*, Ritorno]:  1     2     3     4     5     6     7     :=
 Trenia           34.90 37.90 32.90 17.90 22.90 17.90 16.90
-FerrovieItaliane 25.90 23.90 26.90 20.90 19.90 1e6   1e6
-BusTravel        15.99 15.99 11.99 13.99 11.99 10.99 1e6
-FastBus          11.90 12.90 9.90  15.90 13.90 1e6   1e6;
+FerrovieItaliane 25.90 23.90 26.90 20.90 19.90 1e3   1e3
+BusTravel        15.99 15.99 11.99 13.99 11.99 10.99 1e3
+FastBus          11.90 12.90 9.90  15.90 13.90 1e3   1e3;
+
+# Ad n.d. (che indica la non esistenza di una corsa per una compagnia in un verso)
+# deve corrispondere, per essere certi che non venga scelta, una durata appena superiore
+# alla durata massima per tratta, in modo che il vincolo sceltaCorse non riesce ad essere
+# soddisfatto.
+# N.B. In questa istanza 6 basterebbe, viene comunque messo 1e2 per differenziare maggiormente
+# dai reali dati d'istanza del problema.
 
 param d :=
 
 [*,*, Andata]:   1    2    3    4    5    6    7    :=
-Trenia           4.00 4.00 4.50 4.00 4.00 1e6  1e6
+Trenia           4.00 4.00 4.50 4.00 4.00 1e2  1e2
 FerrovieItaliane 3.00 3.25 3.50 4.00 3.75 3.50 3.50
-BusTravel        5.00 5.30 4.80 1e6  1e6  1e6  1e6
-FastBus          5.10 5.00 5.30 5.00 1e6  1e6  1e6
+BusTravel        5.00 5.30 4.80 1e2  1e2  1e2  1e2
+FastBus          5.10 5.00 5.30 5.00 1e2  1e2  1e2
 
 [*,*, Ritorno]:  1    2    3    4    5    6    7    :=
 Trenia           4.00 4.00 4.00 4.00 4.50 4.00 4.50
-FerrovieItaliane 3.60 3.25 3.00 4.00 3.50 1e6  1e6
-BusTravel        5.50 4.60 5.50 5.00 5.60 6.00 1e6
-FastBus          5.00 5.50 4.60 6.00 5.00 1e6  1e6;
+FerrovieItaliane 3.60 3.25 3.00 4.00 3.50 1e2  1e2
+BusTravel        5.50 4.60 5.50 5.00 5.60 6.00 1e2
+FastBus          5.00 5.50 4.60 6.00 5.00 1e2  1e2;
 
 param B := 200;
 

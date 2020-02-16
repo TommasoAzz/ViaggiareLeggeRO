@@ -3,7 +3,7 @@
 #
 # Modello del problema "Viaggiare LeggeRO"
 
-printf "Viaggiare LeggeRO\n-----------------\n\n";
+printf "---------------------\n| Viaggiare LeggeRO |\n---------------------\n\n";
 
 # Pulizia della memoria
 reset;
@@ -23,16 +23,34 @@ solve;
 # Display delle soluzioni
 printf "\nPianificazione ottima\n";
 printf "\nDistribuzione della selezione delle corse\n";
-display x;
+for {t in T} {
+	# mostro corse per la compagnia solo se la pianificazione ne include
+	if sum{c in C} sum{v in V} x[t,c,v] > 0 then {
+		printf "Compagnia: %s\n", t;
+		for {v in V} {
+			# mostro corse per il verso della compagnia corrente solo se la pianificazione ne include
+			if sum{c in C} x[t,c,v] > 0 then {
+			    printf "- %s\n", v;
+				for {c in C} {
+				    # mostro il numero di corse per il verso e la compagnia correnti solo se la pianificazione ne include
+				    if x[t,c,v] > 0 then
+				        printf "-- Corsa n. %s (prezzo: %.2f euro, durata: %.2f ore): acquistabile per %d viaggi\n", c, p[t,c,v], d[t,c,v], x[t,c,v];
+				}
+			}
+		}
+		printf "\n";
+	}
+}
 
-printf "\nSpesa totale:\n";
+printf "Spesa totale: ";
 printf "%.2f euro", sum{t in T} b[t];
 
 printf "\nSpesa per compagnia:\n";
 for {t in T} {
-    if b[t] > 0 then
-        printf "- %s: %.2f euro ", t, b[t];
-    if z[t] > 0 then
-        printf "(usando la gift card di %.2f euro)", vScontoGC[t];
-    printf "\n";
+    if b[t] > 0 then {
+        printf "- %s: %.2f euro", t, b[t];
+        if z[t] > 0 then
+            printf " (usando la gift card di %.2f euro)", vScontoGC[t];
+        printf "\n";
+    }      
 }
