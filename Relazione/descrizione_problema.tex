@@ -4,27 +4,32 @@
 \section{Descrizione del problema}
 \subsection{Il problema}
 Il sito web ``Viaggiare LeggeRO" si occupa di analizzare i prezzi delle compagnie di trasporto (in particolar modo ferroviarie e di autobus) per fornire
-ai visitatori la miglior scelta possibile per risparmiare tempo e denaro.\\ \\
-Gli studenti fuori sede sono il suo principale target: l'obiettivo è pianificare tanti viaggi quanti ne richiedono, scegliendo le corse e le compagnie, 
-rientrando nel budget da loro espresso e al tempo stesso minimizzando la durata complessiva del tempo trascorso in viaggio.\\
+ai visitatori la miglior scelta possibile per pianificare uno o più viaggi, risparmiando tempo e denaro.\\ \\
+Gli studenti fuori sede sono il suo principale target: essi vogliono cercare di spendere il meno possibile evitando al contempo di passare troppo tempo in viaggio.
+Per spendere meno sono consapevoli che è bene effettuare una buona pianificazione in anticipo, acquistando più viaggi (potenzialmente tutti quelli di cui hanno bisogno in un determinato periodo).
+A questo proposito, il sito web fornisce la possibilità di pianificare uno o più viaggi, scegliendo fra le corse e le compagnie a disposizione, 
+rientrando nel budget richiesto e al tempo stesso minimizzando la durata complessiva del tempo trascorso in viaggio.\\
 \textbf{N.B.} In questo problema, per \textit{viaggio} si intende la coppia \textit{tratta di andata} - \textit{tratta di ritorno}.\\ \\
 Ai visitatori che accedono al sito vengono richiesti:
 \begin{itemize}
     \item la città di partenza, per l'andata, che al ritorno corrisponde alla città di arrivo;
-    \item la citta di arrivo, per l'andata, che al ritorno corrisponde alla città di partenza;
+    \item la città di arrivo, per l'andata, che al ritorno corrisponde alla città di partenza;
     \item il numero di viaggi che si vogliono pianificare;
     \item il budget massimo per tutti i viaggi (in euro);
     \item la durata massima per la singola tratta (in ore);
-    \item il massimo numero di tratte per ogni compagnia, comprensivo di tratte di andata e di ritorno.
+    \item il massimo numero di tratte per ogni compagnia che si intendono effettuare, comprensivo di tratte di andata e di ritorno.
 \end{itemize}
+L'ultimo caso è reso disponibile per permettere di limitare le tratte da effettuare con una compagnia, ad esempio per scartarla completamente (quando si segna 0), 
+oppure per evitare di effettuare troppi viaggi con essa, che potrebbe essere non troppo gradita.\\
 Per ogni compagnia di trasporti che lo permette, il sito web è in possesso dei seguenti dati:
 \begin{itemize}
     \item il prezzo di ogni tratta disponibile (in euro) da una città di partenza a una di arrivo;
-    \item la durata di ogni tratta disponibile (in ore)  da una città di partenza a una di arrivo;
-    \item se offre buoni sconto per incentivare l'acquisto dei propri biglietti, di quale valore vengono emessi (in euro) e quanti biglietti vanno acquistati per ottenerli.
+    \item la durata di ogni tratta disponibile (in ore) da una città di partenza a una di arrivo;
+    \item l'emissione di buoni sconto per incentivare l'acquisto dei propri biglietti: se svolta, si conosce il loro valore (in euro) e dopo quanti biglietti acquistati vengono emessi.
 \end{itemize}
-Ovviamente, una compagnia che emette buoni sconto lo fa per incentivare l'acquisto dei propri biglietti, e non quelli delle altre compagnie. Quindi, un buono sconto emesso dalla compagnia \textit{A} non può essere usato per acquistare biglietti della compagnia \textit{B}.
-Inoltre, per semplicità, attraverso il sito web ogni compagnia può emettere solo un buono sconto per pianificazione.\\ \\
+Ovviamente, una compagnia che emette buoni sconto lo fa per incentivare l'acquisto dei propri biglietti, e non quelli delle altre compagnie, 
+conseguentemente un buono sconto emesso dalla compagnia \textit{A} non può essere usato per acquistare biglietti della compagnia \textit{B}.\\
+\textbf{N.B.} In questo problema, per semplicità, attraverso il sito web ogni compagnia può emettere solo un buono sconto per pianificazione.\\ \\
 Il sito dispone attualmente dei dati di quattro compagnie:
 \begin{itemize}
     \item Trenia;
@@ -32,10 +37,25 @@ Il sito dispone attualmente dei dati di quattro compagnie:
     \item BusTravel;
     \item FastBus.
 \end{itemize}
-La compagnia Trenia offre un buono sconto di \e{15} dopo l'acquisto di 5 biglietti (a un biglietto corrisponde una sola tratta).\\
-La compagnia FerrovieItaliane offre un buono sconto di \e{10} dopo l'acquisto di 4 biglietti.\\
-La compagnia BusTravel è appena entrata nel mercato italiano e per autopromuoversi offre un buono sconto di \e{10} fin dal primo acquisto (quindi acquistando il primo biglietto si può già usare il buono sconto).\\
-La compagnia FastBus non offre buoni sconto.
+L'emissione dei buoni sconto è regolata per ogni compagnia secondo le seguenti politiche:
+{
+\renewcommand{\arraystretch}{2}
+\begin{longtable}[h]{c | c | c}
+\textbf{Compagnia di trasporto} & \textbf{Valore} & \textbf{Biglietti richiesti per l'emissione} \\
+\hline
+\endhead
+Trenia                          & \e{15.00}       & 5                                            \\
+\hline
+FerrovieItaliane                & \e{10.00}       & 4                                            \\
+\hline
+BusTravel                       & \e{10.00}       & 0 $^{*}$                                     \\
+\hline
+FastBus                         & -               & - $^{**}$                                    \\
+\end{longtable}
+}
+\setlength{\parindent}{0em}
+$^*$ La compagnia BusTravel è appena entrata nel mercato italiano e per autopromuoversi offre un buono sconto fin dal primo acquisto (quindi acquistando il primo biglietto si può già usare il buono sconto).\\
+$^{**}$ La compagnia FastBus non offre buoni sconto.
 
 \subsection{Dati di esempio}
 Viene fornito un esempio di ricerca effettuata da un utente del sito web:
@@ -62,7 +82,7 @@ Viene fornito un esempio di ricerca effettuata da un utente del sito web:
     \end{longtable}
     }
 \end{itemize}
-Si presentano adesso dei dati di esempio a disposizione del sito per le tratte Padova $\leftrightarrow$ Torino (Padova $\rightarrow$ Torino e Torino $\rightarrow$ Padova).\\
+Vengono di seguito presentati i dati a disposizione del sito per le tratte offerte dalle compagnie disponibili per il tragitto Padova $\leftrightarrow$ Torino (Padova $\rightarrow$ Torino e Torino $\rightarrow$ Padova).\\
 \textbf{N.B.} Le celle contenenti ``n.d." indicano un'assenza della corsa.
 
 \subsubsection*{Padova $\rightarrow$ Torino: costi della tratta (in euro)}
@@ -120,16 +140,16 @@ FastBus                         & \e{11.90}  & \e{12.90}  & \e{9.90}   & \e{15.9
 {
 \renewcommand{\arraystretch}{2}
 \begin{longtable}[h]{c | c | c | c | c | c | c | c}
-    \textbf{Compagnia di trasporto} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
+\textbf{Compagnia di trasporto} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
 \hline
 \endhead
-Trenia                              & 4 h        & 4 h        & 4 h        & 4 h        & 4.5 h      & 4 h        & 4.5 h      \\
+Trenia                          & 4 h        & 4 h        & 4 h        & 4 h        & 4.5 h      & 4 h        & 4.5 h      \\
 \hline
-FerrovieItaliane                    & 3.6 h      & 3.25 h     & 3 h        & 4 h        & 3.5 h      & n.d.       & n.d.       \\
+FerrovieItaliane                & 3.6 h      & 3.25 h     & 3 h        & 4 h        & 3.5 h      & n.d.       & n.d.       \\
 \hline
-BusTravel                           & 5.5 h      & 4.6 h      & 5.5 h      & 5 h        & 5.6 h      & 6 h        & n.d.       \\
+BusTravel                       & 5.5 h      & 4.6 h      & 5.5 h      & 5 h        & 5.6 h      & 6 h        & n.d.       \\
 \hline
-FastBus                             & 5 h        & 5.5 h      & 4.6 h      & 6 h        & 5 h        & n.d.       & n.d.       \\
+FastBus                         & 5 h        & 5.5 h      & 4.6 h      & 6 h        & 5 h        & n.d.       & n.d.       \\
 \end{longtable}
 }
 

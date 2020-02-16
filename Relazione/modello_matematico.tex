@@ -23,11 +23,11 @@ Questo modello verrà successivamente descritto nel linguaggio di programmazione
 \subsection*{Insiemi}
 Per questo problema vengono individuati tre insiemi:
 \begin{itemize}
-    \item $T$, l'insieme delle compagnie di trasporto;
-    \item $C$, l'insieme delle possibili corse di una compagnia. Corrisponde alla cardinalità massima fra tutte le cardinalità delle corse disponibili per una compagnia;
-    \item $V$, l'insieme dei versi di una tratta. È fisso: $V = \{Andata, Ritorno \}$.
+    \item $T$, l'insieme delle compagnie di \textbf{trasporto};
+    \item $C$, l'insieme delle possibili \textbf{corse} di una compagnia, la cui cardinalità corrisponde al massimo fra il numero di corse disponibili per ciascuna compagnia;
+    \item $V$, l'insieme dei \textbf{versi} di una tratta. È fisso: $V = \{Andata, Ritorno\}$.
 \end{itemize}
-Per i dati di esempio della sezione §1.2:
+Per i dati di esempio della sezione §1.2 della descrizione del problema:
 \begin{itemize}
     \item $T = \{Trenia, FerrovieItaliane, BusTravel, FastBus\}$;
     \item $C = \{1, 2, 3, 4, 5, 6, 7\}$.
@@ -37,7 +37,7 @@ Per i dati di esempio della sezione §1.2:
 Le variabili individuate sono le seguenti (in ordine alfabetico):
 \begin{itemize}
     \item $b_t \in \mathbb{R}_+$, corrispondente all'ammontare del budget totale impiegato per la compagnia $t \in T$
-    \item $x_{t,c,v} \in \mathbb{Z}_+$, corrispondente al numero di volte in cui è stata scelta la corsa $c \in C$ della compagnia $t \in T$ nel verso $v \in V$
+    \item $x_{t,c,v} \in \mathbb{Z}_+$, corrispondente al numero di volte in viene scelta la corsa $c \in C$ della compagnia $t \in T$ nel verso $v \in V$
     \item $y_{t,c,v} =$
     \begin{math} { \begin{cases}
         1, & la\; corsa\; \text{$c \in C$}\; della\; compagnia\; \text{$t \in T$}\; nel\; verso\; \text{$v \in V$}\; pu\grave{o}\; essere\; scelta \\
@@ -49,66 +49,71 @@ Le variabili individuate sono le seguenti (in ordine alfabetico):
         0, & la\; gift\; card\; della\; compagnia\; \text{$t \in T$}\; non\; viene\; emessa 
     \end{cases} } \end{math}
 \end{itemize}
-\textbf{N.B.} $0 \in \mathbb{R}_+, \mathbb{Z}_+$.
+\textbf{N.B.} Sono da tenere in considerazione le seguenti:
+\begin{itemize}
+    \item $0 \in \mathbb{R}_+, \mathbb{Z}_+$;
+    \item una corsa può essere scelta se la sua durata è inferiore o uguale alla massima durata per corsa richiesta (condizione necessaria ma non sufficiente).
+\end{itemize}
 
 \subsection*{Parametri}
 I parametri richiesti per poter risolvere il problema sono i seguenti:
 \begin{itemize}
-    \item $p_{t,c,v} \in \mathbb{R}_+$, corrispondente al prezzo della corsa (in euro) $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$;
-    \item $d_{t,c,v} \in \mathbb{R}_+$, corrispondente alla durata della corsa (in ore) $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$ (essendo in ore, due ore e mezza (2h30), ad esempio, si indicano come 2.5 ore);
-    \item $B \in \mathbb{R}_+$, corrispondente al budget massimo (in euro) per tutti i viaggi da pianificare;
-    \item $D \in \mathbb{R}_+$, corrispondente alla durata massima (in ore) di una tratta;
+    \item $p_{t,c,v} \in \mathbb{R}_+$, corrispondente al prezzo (in euro) della corsa $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$;
+    \item $d_{t,c,v} \in \mathbb{R}_+$, corrispondente alla durata (in ore) della corsa $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$ (essendo in ore, due ore e mezza (2h30), ad esempio, si indica come 2.5 ore);
+    \item $B \in \mathbb{R}_+$, corrispondente al budget (in euro) massimo per tutti i viaggi da pianificare;
+    \item $D \in \mathbb{R}_+$, corrispondente alla durata (in ore) massima di una tratta;
     \item $N \in \mathbb{Z}_+$, corrispondente al numero di viaggi da pianificare;
     \item $nViaggiGC_t \in \mathbb{Z}_+$, corrispondente al numero di viaggi necessari per l'emissione della gift card da parte della compagnia $t \in T$;
     \item $vScontoGC_t \in \mathbb{R}_+$, corrispondente al valore della gift card emessa da parte della compagna $t \in T$;
     \item $maxTratte_t \in \mathbb{Z}_+$, corrispondente al numero massimo di tratte effettuabili con la compagnia $t \in T$;
     \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.
+    È fisso: $M = 10^5$ (ma potrebbe essere anche più grande).
 \end{itemize}
 
 \subsection*{Modello}
 \setlength{\parindent}{0em}
-Funzione obiettivo
+Funzione obiettivo:
 \begin{tcolorbox}
 $$min \sum_{t\; \in\; T} \sum_{c\; \in\; C} \sum_{v\; \in\; V} d_{t,c,v} \times{} x_{t,c,v}$$
 $s.t.$
 \end{tcolorbox}
 
-Il budget totale a disposizione viene diviso per tutte le compagnie (è necessario per applicare correttamente gli sconti dati dalle gift card)
+Il budget totale a disposizione viene diviso per tutte le compagnie (è necessario per applicare correttamente gli sconti dati dalle gift card):
 \begin{tcolorbox}
 $$\sum_{t\; \in\; T} b_t \leq B$$
 \end{tcolorbox}
 
-Va rispettato il budget complessivo per tutti i viaggi acquistati, tenendo conto della possibilità di usare le gift card
+Va rispettato il budget complessivo per tutti i viaggi acquistati, tenendo conto dell'emissione delle gift card:
 \begin{tcolorbox}
 $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} p_{t,c,v} \times{} x_{t,c,v} = b_t + vScontoGC_t \times{} z_t \hspace{10mm} \forall{} t \in T$$
 \end{tcolorbox}
 
-Possono essere scelte solo le corse che rispettano il tempo massimo per corsa richiesto (eventualmente considerando la possibilità di aggiungere del tempo)
+Possono essere scelte solo le corse che rispettano il tempo massimo per corsa richiesto:
 \begin{tcolorbox}
 $$d_{t,c,v} \times{} y_{t,c,v} \leq D \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 \end{tcolorbox}
 
-Devono essere pianificati esattamente tanti viaggi quanti richiesti
+Devono essere pianificati esattamente tanti viaggi quanti richiesti:
 \begin{tcolorbox}
 $$\sum_{t\; \in\; T} \sum_{c\; \in\; C} x_{t,c,v} = N \hspace{10mm} \forall{} v \in V$$
 \end{tcolorbox}
 
-Vanno rispettati i limiti massimi di tratte per ogni compagnia
+Vanno rispettati i limiti massimi di tratte per ogni compagnia:
 \begin{tcolorbox}
 $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \leq maxTratte_t \hspace{10mm} \forall{} t \in T$$
 \end{tcolorbox}
 
-Attivazione delle variabili binarie (creazione di un legame fra $x$ e $y$, infatti $\nexists y_{t,c,v}, \nexists x_{t,c,v}\; t.c.\; y_{t,c,v} = 0, x_{t,c,v} > 0\; \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$)
+Creazione di un legame fra $x$ e $y$, infatti deve verificarsi $\nexists y_{t,c,v}, \nexists x_{t,c,v}\; t.c.\; y_{t,c,v} = 0, x_{t,c,v} > 0\; \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$ (attivazione delle variabili binarie):
 \begin{tcolorbox}
 $$x_{t,c,v} \leq y_{t,c,v} \times{} M \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 \end{tcolorbox}
 
-Emissione delle gift card
+Emissione delle gift card (attivazione delle variabili binarie):
 \begin{tcolorbox}
 $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \geq nViaggiGC_t \times z_t \hspace{10mm} \forall{} t \in T$$
 \end{tcolorbox}
 
-Domini delle variabili
+Domini delle variabili:
 \begin{tcolorbox}
 $$b_t \in \mathbb{R}_+ \hspace{10mm} \forall{} t \in T$$
 $$x_{t,c,v} \in \mathbb{Z}_+ \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
