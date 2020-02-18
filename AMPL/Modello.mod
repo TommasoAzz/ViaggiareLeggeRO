@@ -62,9 +62,6 @@ param vScontoGC{T} >= 0;
 # Numero massimo di corse effettuabili con la compagnia t in T
 param maxTratte{T} >= 0 integer;
 
-# Big M
-param M >= 0;
-
 ########################
 # MODELLO DEL PROBLEMA #
 ########################

@@ -77,10 +77,9 @@ FerrovieItaliane 10
 BusTravel 10
 FastBus 0;
 
+# Le tratte sono 12 (6 viaggi di 2 tratte ciascuno) al massimo (inutile mettere valori superiori)
 param maxTratte :=
 Trenia 3
 FerrovieItaliane 3
 BusTravel 3
 FastBus 3;
-
-param M := 1e5;

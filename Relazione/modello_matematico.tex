@@ -66,8 +66,8 @@ I parametri richiesti per poter risolvere il problema sono i seguenti:
     \item $nViaggiGC_t \in \mathbb{Z}_+$, corrispondente al numero di viaggi necessari per l'emissione della gift card da parte della compagnia $t \in T$;
     \item $vScontoGC_t \in \mathbb{R}_+$, corrispondente al valore della gift card emessa da parte della compagna $t \in T$;
     \item $maxTratte_t \in \mathbb{Z}_+$, corrispondente al numero massimo di tratte effettuabili con la compagnia $t \in T$;
-    \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.
-    È fisso: $M = 10^5$ (ma potrebbe essere anche più grande).
+    % \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.
+    % È fisso: $M = 10^5$ (ma potrebbe essere anche più grande).
 \end{itemize}
 
 \subsection*{Modello}
@@ -105,7 +105,8 @@ $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \leq maxTratte_t \hspace{10mm}
 
 Creazione di un legame fra $x$ e $y$, infatti deve verificarsi $\nexists y_{t,c,v}, \nexists x_{t,c,v}\; t.c.\; y_{t,c,v} = 0, x_{t,c,v} > 0\; \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$ (attivazione delle variabili binarie):
 \begin{tcolorbox}
-$$x_{t,c,v} \leq y_{t,c,v} \times{} M \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
+% $$x_{t,c,v} \leq y_{t,c,v} \times{} M \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
+$$x_{t,c,v} \leq y_{t,c,v} \times{} N \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 \end{tcolorbox}
 
 Emissione delle gift card (attivazione delle variabili binarie):
