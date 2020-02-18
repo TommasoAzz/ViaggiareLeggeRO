@@ -12,7 +12,7 @@ reset;
 model Modello.mod;
 
 # Caricamento dei dati
-data Dati.dat;
+data Dati_PdTo_0.dat;
 
 # Caricamento del solver
 option solver cplex;
