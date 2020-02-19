@@ -1,0 +1,59 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\section{Esecuzione del problema}
+\subsection{File dati}
+Per provare il modello vengono forniti sei file \textbf{.dat}, ognuno contenente i dati a disposizione del sito al momento della richiesta, oltre alle richieste
+dell'utente indicate in §1.1:
+\begin{itemize}
+    \item Dati\_PdTo\_0.dat, per il tragitto Padova $\leftrightarrow$ Torino (corrispondente ai dati presentati in §1.2);
+    \item Dati\_PdTo\_1.dat, per il tragitto Padova $\leftrightarrow$ Torino;
+    \item Dati\_MiRm\_0.dat, per il tragitto Milano $\leftrightarrow$ Roma;
+    \item Dati\_MiRm\_1.dat, per il tragitto Milano $\leftrightarrow$ Roma;
+    \item Dati\_BoBz\_0.dat, per il tragitto Bologna $\leftrightarrow$ Bolzano;
+    \item Dati\_BoBz\_1.dat, per il tragitto Bologna $\leftrightarrow$ Bolzano.
+\end{itemize}
+Per il tragitto Bologna $\leftrightarrow$ Bolzano, il sito web ha a disposizione i dati della compagnia oltre a quelli delle compagnie già presentate. 
+Questa compagnia offre un buono sconto di \e{5} fin dal primo acquisto, come la compagnia BusTravel.
+Più precisamente, le coppie di file:
+\begin{itemize}
+    \item Dati\_PdTo\_0.dat e Dati\_PdTo\_1.dat,
+    \item Dati\_MiRm\_0.dat e Dati\_MiRm\_1.dat,
+    \item Dati\_BoBz\_0.dat e Dati\_BoBz\_1.dat,
+\end{itemize}
+presentano gli stessi dati, ad eccezione del parametro $maxTratte \in \mathbb{Z}_+^{|T|}$ che nel secondo di ciascuna coppia di file viene istanziato 
+con dati che lo rendono di fatto ridondante (poiché viene istanziato con il massimo numero di tratte che deve essere necessariamente effettuato).
+Il motivo di questa scelta è dovuto al fatto di voler analizzare quanto varia la soluzione del modello rendendo meno stringenti i vincoli.
+
+\subsection{Risultati dell'esecuzione}
+\subsection*{Tragitto: Padova $\leftrightarrow$ Torino}
+L'utente richiede una pianificazione con questi dati:
+\begin{itemize}
+    \item Budget (massimo): \e{200};
+    \item Durata (massima di una tratta): 5h;
+    \item Numero viaggi da pianificare: 6;
+    \item $maxTratte^T = [3,3,3,3]$ (1$^{\circ}$ file);
+    \item $maxTratte^T = [12,12,12,12]$ (2$^{\circ}$ file).
+\end{itemize}
+
+\subsection*{Tragitto: Milano $\leftrightarrow$ Roma}
+L'utente richiede una pianificazione con questi dati:
+\begin{itemize}
+    \item Budget (massimo): \e{400};
+    \item Durata (massima di una tratta): 8.5h;
+    \item Numero viaggi da pianificare: 8;
+    \item $maxTratte^T = [16,16,4,2]$ (1$^{\circ}$ file);
+    \item $maxTratte^T = [16,16,16,16]$ (2$^{\circ}$ file).
+\end{itemize}
+
+\subsection*{Tragitto: Bologna $\leftrightarrow$ Bolzano}
+L'utente richiede una pianificazione con questi dati:
+\begin{itemize}
+    \item Budget (massimo): \e{100};
+    \item Durata (massima di una tratta): 4h;
+    \item Numero viaggi da pianificare: 4;
+    \item $maxTratte^T = [1,1,2,3,1]$ (1$^{\circ}$ file);
+    \item $maxTratte^T = [8,8,8,8]$ (2$^{\circ}$ file).
+\end{itemize}
+
+\end{document}
