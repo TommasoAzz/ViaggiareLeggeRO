@@ -20,7 +20,7 @@
 In questa sezione viene illustrato il modello matematico di Programmazione Lineare utilizzato per la risoluzione del problema descritto nella precedente sezione.\\
 Questo modello verrà successivamente descritto nel linguaggio di programmazione \textbf{AMPL}.
 
-\subsection*{Insiemi}
+\subsection{Insiemi}
 Per questo problema vengono individuati tre insiemi:
 \begin{itemize}
     \item $T$, l'insieme delle compagnie di \textbf{trasporto};
@@ -33,7 +33,7 @@ Per i dati di esempio della sezione §1.2 della descrizione del problema:
     \item $C = \{1, 2, 3, 4, 5, 6, 7\}$.
 \end{itemize}
 
-\subsection*{Variabili}
+\subsection{Variabili}
 Le variabili individuate sono le seguenti (in ordine alfabetico):
 \begin{itemize}
     \item $b_t \in \mathbb{R}_+$, corrispondente all'ammontare del budget totale impiegato per la compagnia $t \in T$
@@ -55,7 +55,7 @@ Le variabili individuate sono le seguenti (in ordine alfabetico):
     \item una corsa può essere scelta se la sua durata è inferiore o uguale alla massima durata per corsa richiesta (condizione necessaria ma non sufficiente).
 \end{itemize}
 
-\subsection*{Parametri}
+\subsection{Parametri}
 I parametri richiesti per poter risolvere il problema sono i seguenti:
 \begin{itemize}
     \item $p_{t,c,v} \in \mathbb{R}_+$, corrispondente al prezzo (in euro) della corsa $c \in C$ nel verso $v \in V$ con la compagnia $t \in T$;
@@ -67,11 +67,9 @@ I parametri richiesti per poter risolvere il problema sono i seguenti:
     (ovvero, se la compagnia \textit{A} emette una gift card dopo $n$ biglietti acquistati, con l'acquisto del biglietto $n+1$ è possibile utilizzarla);
     \item $vScontoGC_t \in \mathbb{R}_+$, corrispondente al valore della gift card emessa da parte della compagna $t \in T$;
     \item $maxTratte_t \in \mathbb{Z}_+$, corrispondente al numero massimo di tratte effettuabili con la compagnia $t \in T$;
-    % \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.
-    % È fisso: $M = 10^5$ (ma potrebbe essere anche più grande).
 \end{itemize}
 
-\subsection*{Modello}
+\subsection{Modello}
 \setlength{\parindent}{0em}
 Funzione obiettivo:
 \begin{tcolorbox}
@@ -104,9 +102,8 @@ Vanno rispettati i limiti massimi di tratte per ogni compagnia:
 $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \leq maxTratte_t \hspace{10mm} \forall{} t \in T$$
 \end{tcolorbox}
 
-Creazione di un legame fra $x$ e $y$, infatti deve verificarsi $\nexists y_{t,c,v}, \nexists x_{t,c,v}\; t.c.\; y_{t,c,v} = 0, x_{t,c,v} > 0\; \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$ (attivazione delle variabili binarie):
+Creazione di un legame fra $x$ e $y$, infatti deve essere vero che: $\nexists y_{t,c,v}, \nexists x_{t,c,v}\; t.c.\; y_{t,c,v} = 0, x_{t,c,v} > 0\; \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$ (attivazione delle variabili binarie):
 \begin{tcolorbox}
-% $$x_{t,c,v} \leq y_{t,c,v} \times{} M \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 $$x_{t,c,v} \leq y_{t,c,v} \times{} N \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 \end{tcolorbox}
 
@@ -122,4 +119,27 @@ $$x_{t,c,v} \in \mathbb{Z}_+ \hspace{10mm} \forall{} t \in T, \forall{} c \in C,
 $$y_{t,c,v} \in \{0,1\} \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 $$z_t \in \{0,1\} \hspace{10mm} \forall{} t \in T$$
 \end{tcolorbox}
+
+\subsection{Valori spuri}
+Si vuole discutere la possibilità che nel modello si presentino valori spuri in certe variabili.\\
+Nel primo vincolo di attivazione delle variabili binarie:
+\begin{tcolorbox}
+    $$x_{t,c,v} \leq y_{t,c,v} \times{} N \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
+\end{tcolorbox}
+è certamente possibile che $\exists{} t \in T, \exists{} c \in C, \exists{} v \in V\; t.c.\; y_{t,c,v} = 1, x_{t,c,v} = 0$.
+Infatti, la sola possibilità di poter acquistare un biglietto per una tratta perché $d_{t,c,v} \leq D$ non indica la necessità di effettuare l'acquisto.
+Se si volesse evitare il verificarsi di questi valori spuri si potrebbe aggiungere il seguente vincolo:
+\begin{tcolorbox}
+    $$x_{t,c,v} \geq y_{t,c,v} \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
+\end{tcolorbox}
+ma allora $y$ non avrebbe più lo stesso significato di ``possibilità di acquistare la corsa" descritto nella sezione sulle variabili del problema, bensì di ``acquisto della corsa".\\ \\
+Nel secondo vincolo di attivazione delle variabili binarie:
+\begin{tcolorbox}
+    $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \geq nViaggiGC_t \times z_t \hspace{10mm} \forall{} t \in T$$
+\end{tcolorbox}
+sarebbe possibile che $\exists{} t \in T\; t.c.\; \sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \geq nViaggiGC_t \times z_t$ ma con $z_t = 0$.\\
+Chiaramente $z_t = 0$ starebbe a dire che per la compagnia $t \in T$ l'utilizzo della gift card è precluso, comportando una minore disponibilità di budget che potrebbe
+portare ad una soluzione ammissibile (ma non ottima) o addirittura a non ammissibile. Per questo motivo, nel secondo vincolo del modello (sul budget complessivo) si tiene conto anche dell'emissione
+delle gift card.
+
 \end{document}
