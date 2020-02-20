@@ -63,7 +63,8 @@ I parametri richiesti per poter risolvere il problema sono i seguenti:
     \item $B \in \mathbb{R}_+$, corrispondente al budget (in euro) massimo per tutti i viaggi da pianificare;
     \item $D \in \mathbb{R}_+$, corrispondente alla durata (in ore) massima di una tratta;
     \item $N \in \mathbb{Z}_+$, corrispondente al numero di viaggi da pianificare;
-    \item $nViaggiGC_t \in \mathbb{Z}_+$, corrispondente al numero di viaggi necessari per l'emissione della gift card da parte della compagnia $t \in T$;
+    \item $nViaggiGC_t \in \mathbb{Z}_+$, corrispondente al minimo numero di viaggi richiesti per utilizzare la gift card emessa dalla compagnia $t \in T$
+    (ovvero, se la compagnia \textit{A} emette una gift card dopo $n$ biglietti acquistati, con l'acquisto del biglietto $n+1$ è possibile utilizzarla);
     \item $vScontoGC_t \in \mathbb{R}_+$, corrispondente al valore della gift card emessa da parte della compagna $t \in T$;
     \item $maxTratte_t \in \mathbb{Z}_+$, corrispondente al numero massimo di tratte effettuabili con la compagnia $t \in T$;
     % \item $M \in \mathbb{R}_+$, corrispondente a un numero molto grande, necessario per l'attivazione delle variabili binarie.

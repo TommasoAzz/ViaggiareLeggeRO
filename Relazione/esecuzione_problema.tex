@@ -13,8 +13,6 @@ dell'utente indicate in §1.1:
     \item Dati\_BoBz\_0.dat, per il tragitto Bologna $\leftrightarrow$ Bolzano;
     \item Dati\_BoBz\_1.dat, per il tragitto Bologna $\leftrightarrow$ Bolzano.
 \end{itemize}
-Per il tragitto Bologna $\leftrightarrow$ Bolzano, il sito web ha a disposizione i dati della compagnia oltre a quelli delle compagnie già presentate. 
-Questa compagnia offre un buono sconto di \e{5} fin dal primo acquisto, come la compagnia BusTravel.
 Più precisamente, le coppie di file:
 \begin{itemize}
     \item Dati\_PdTo\_0.dat e Dati\_PdTo\_1.dat,
@@ -22,8 +20,10 @@ Più precisamente, le coppie di file:
     \item Dati\_BoBz\_0.dat e Dati\_BoBz\_1.dat,
 \end{itemize}
 presentano gli stessi dati, ad eccezione del parametro $maxTratte \in \mathbb{Z}_+^{|T|}$ che nel secondo di ciascuna coppia di file viene istanziato 
-con dati che lo rendono di fatto ridondante (poiché viene istanziato con il massimo numero di tratte che deve essere necessariamente effettuato).
-Il motivo di questa scelta è dovuto al fatto di voler analizzare quanto varia la soluzione del modello rendendo meno stringenti i vincoli.
+con dati che lo rendono di fatto ridondante (poiché viene istanziato con il massimo numero di tratte che deve essere necessariamente effettuato).\\
+Il motivo di questa scelta è dovuto al fatto di voler analizzare quanto varia la soluzione del modello rendendo meno stringenti i vincoli.\\
+Per il tragitto Bologna $\leftrightarrow$ Bolzano, il sito web ha a disposizione i dati della compagnia DeutscherZug oltre a quelli delle compagnie già presentate in precedenza. 
+Questa compagnia offre un buono sconto di \e{5} fin dal primo acquisto, come la compagnia BusTravel.
 
 \subsection{Risultati dell'esecuzione}
 \subsection*{Tragitto: Padova $\leftrightarrow$ Torino}
@@ -42,7 +42,7 @@ Il risultato ottenuto è il seguente:
         \item con Dati\_PdTo\_0.dat: 49.20h
         \item con Dati\_PdTo\_1.dat: 45.00h
     \end{itemize}
-    \item corse selezionate (con $x_{t,c,v} > 0$):
+    \item corse selezionate (mostrate solo quelle con $x_{t,c,v} > 0$):
     \begin{itemize}
         \item con Dati\_PdTo\_0.dat
         \begin{itemize}
@@ -60,7 +60,7 @@ Il risultato ottenuto è il seguente:
             \item $x_{FastBus,3,Ritorno} = 2$
         \end{itemize}
     \end{itemize}
-    \item budget impiegato per ogni compagnia (con $b_t > 0$):
+    \item budget impiegato per ogni compagnia (mostrati solo quelli con $b_t > 0$):
     \begin{itemize}
         \item con Dati\_PdTo\_0.dat
         \begin{itemize}
@@ -101,7 +101,7 @@ Il risultato ottenuto è il seguente:
         \item con Dati\_MiRm\_0.dat: 92.10h
         \item con Dati\_MiRm\_1.dat: 91.85h
     \end{itemize}
-    \item corse selezionate (con $x_{t,c,v} > 0$):
+    \item corse selezionate (mostrate solo quelle con $x_{t,c,v} > 0$):
     \begin{itemize}
         \item con Dati\_MiRm\_0.dat
         \begin{itemize}
@@ -117,7 +117,7 @@ Il risultato ottenuto è il seguente:
             \item $x_{FastBus,1,Andata} = 3$
         \end{itemize}
     \end{itemize}
-    \item budget impiegato per ogni compagnia (con $b_t > 0$):
+    \item budget impiegato per ogni compagnia (mostrati solo quelli con $b_t > 0$):
     \begin{itemize}
         \item con Dati\_MiRm\_0.dat
         \begin{itemize}
@@ -137,8 +137,8 @@ Il risultato ottenuto è il seguente:
 In questo caso invece, con le due istanze fornite i risultati dell'esecuzione del problema non sono granché differenti: i valori delle funzioni obiettivo 
 distano di solo 0.25h. Sono stati volontariamente inseriti in questo modo per mostrare come il modello tenda in ogni caso a prediligere le compagnie Trenia e 
 FerrovieItaliane dato che in quest'istanza di problema offrono tratte con durata minore. È cambiato invece di quasi \e{8} la differenza di prezzo, ovvero a 
-circa \e{8} in più si ottiene una diminuzione del tempo totale di solo 15 minuti (0.25h corrisponde ad un quarto d'ora). Questo può indicare come aggiustando 
-certi parametri (in questo caso $maxTratte$) si possa ottenere una diminuzione del prezzo finale, a discapito di un piccolo aumento del tempo di percorrenza, 
+circa \e{8} in più si ottiene una diminuzione del tempo totale di solo 15 minuti (0.25h corrisponde ad un quarto d'ora). Questo può indicare come, aggiustando 
+certi parametri (in questo caso $maxTratte$), si possa ottenere una diminuzione del prezzo finale a discapito di un piccolo aumento del tempo di percorrenza, 
 che è comunque un altro fattore importante per il principale target del sito web ``Viaggiare LeggeRO": lo studente.
 
 \subsection*{Tragitto: Bologna $\leftrightarrow$ Bolzano}
@@ -157,7 +157,7 @@ Il risultato ottenuto è il seguente:
         \item con Dati\_BoBz\_0.dat: 25.70h
         \item con Dati\_BoBz\_1.dat: 23.45h
     \end{itemize}
-    \item corse selezionate (con $x_{t,c,v} > 0$):
+    \item corse selezionate (mostrate solo quelle con $x_{t,c,v} > 0$):
     \begin{itemize}
         \item con Dati\_BoBz\_0.dat
         \begin{itemize}
@@ -175,7 +175,7 @@ Il risultato ottenuto è il seguente:
             \item $x_{BusTravel,5,Ritorno} = 3$
         \end{itemize}
     \end{itemize}
-    \item budget impiegato per ogni compagnia (con $b_t > 0$):
+    \item budget impiegato per ogni compagnia (mostrati solo quelli con $b_t > 0$):
     \begin{itemize}
         \item con Dati\_BoBz\_0.dat
         \begin{itemize}
