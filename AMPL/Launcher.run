@@ -12,10 +12,10 @@ reset;
 model Modello.mod;
 
 # Caricamento dei dati
-# data Dati_PdTo_0.dat;
+data Dati_PdTo_0.dat; # Dati presentati nella sezione 1.2 della relazione
 # data Dati_PdTo_1.dat;
 # data Dati_MiRm_0.dat;
-data Dati_MiRm_1.dat;
+# data Dati_MiRm_1.dat;
 # data Dati_BoBz_0.dat;
 # data Dati_BoBz_1.dat;
 

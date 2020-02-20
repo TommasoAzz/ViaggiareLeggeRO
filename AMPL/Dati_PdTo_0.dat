@@ -68,7 +68,7 @@ param N := 6;
 param nViaggiGC :=
 Trenia 5
 FerrovieItaliane 4
-BusTravel 0
+BusTravel 1
 FastBus 0;
 
 param vScontoGC :=
