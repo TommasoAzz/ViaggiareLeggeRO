@@ -32,51 +32,58 @@ Viene richiesta una pianificazione con questi dati:
     \item Budget (massimo): \e{200};
     \item Durata (massima di una tratta): 5h;
     \item Numero viaggi da pianificare: 6;
-    \item Dati\_PdTo\_0.dat: $maxTratte^T = [3,3,3,3]$;
-    \item Dati\_PdTo\_1.dat: $maxTratte^T = [12,12,12,12]$.
+    \item con Dati\_PdTo\_0.dat: $maxTratte^T = [3,3,3,3]$;
+    \item con Dati\_PdTo\_1.dat: $maxTratte^T = [12,12,12,12]$.
 \end{itemize}
 Il risultato ottenuto è il seguente:
 \begin{itemize}
-    \item valore della funzione obiettivo:
+    \item totale di ore in viaggio minime per la pianificazione richiesta:
     \begin{itemize}
-        \item Dati\_PdTo\_0.dat: 49.20h
-        \item Dati\_PdTo\_1.dat: 45.00h
+        \item con Dati\_PdTo\_0.dat: 49.20h
+        \item con Dati\_PdTo\_1.dat: 45.00h
     \end{itemize}
     \item corse selezionate (con $x_{t,c,v} > 0$):
     \begin{itemize}
-        \item Dati\_PdTo\_0.dat
+        \item con Dati\_PdTo\_0.dat
         \begin{itemize}
             \item $x_{Trenia,4,Ritorno} = 3$
             \item $x_{FerrovieItaliane,1,Andata} = 3$
             \item $x_{BusTravel,3,Andata} = 3$
             \item $x_{FastBus,3,Ritorno} = 3$
         \end{itemize}
-        \item Dati\_PdTo\_1.dat
+        \item con Dati\_PdTo\_1.dat
         \begin{itemize}
-            \item $x_{Trenia,4,Ritorno} = 5$
-            \item $x_{FerrovieItaliane,1,Andata} = 1$
-            \item $x_{FerrovieItaliane,7,Andata} = 4$
+            \item $x_{FerrovieItaliane,7,Andata} = 5$
             \item $x_{FerrovieItaliane,3,Ritorno} = 1$
-            \item $x_{BusTravel,1,Andata} = 1$
+            \item $x_{FerrovieItaliane,5,Ritorno} = 3$
+            \item $x_{BusTravel,3,Andata} = 1$
+            \item $x_{FastBus,3,Ritorno} = 2$
         \end{itemize}
     \end{itemize}
     \item budget impiegato per ogni compagnia (con $b_t > 0$):
     \begin{itemize}
-        \item Dati\_PdTo\_0.dat
+        \item con Dati\_PdTo\_0.dat
         \begin{itemize}
             \item $b_{Trenia} = 53.70$ euro
             \item $b_{FerrovieItaliane} = 80.70$ euro
             \item $b_{BusTravel} = 31.97$ euro (usando la gift card di 10.00 euro)
             \item $b_{FastBus} = 29.70$ euro
         \end{itemize}
-        \item Dati\_PdTo\_1.dat
+        \item con Dati\_PdTo\_1.dat
         \begin{itemize}
-            \item $b_{Trenia} = 74.50$ euro (usando la gift card di 15.00 euro)
-            \item $b_{FerrovieItaliane} = 123.40$ euro (usando la gift card di 10.00 euro)
-            \item $b_{BusTravel} = 1.99$ euro (usando la gift card di 10.00 euro)
+            \item $b_{FerrovieItaliane} = 176.10$ euro (usando la gift card di 10.00 euro)
+            \item $b_{BusTravel} = 3.99$ euro (usando la gift card di 10.00 euro)
+            \item $b_{FastBus} = 19.80$ euro
         \end{itemize}
     \end{itemize}
 \end{itemize}
+Si può osservare come, richiedendo di fare al massimo tre tratte con ogni compagnia, è stato necessario soddisfare all'uguaglianza 
+il vincolo sul massimo numero di tratte per poter al contempo soddisfare quello sul numero di viaggi. Rimuovendo il limite delle tre tratte per compagnia,
+lasciando di fatto libera scelta (come spiegato in §4.1), il modello ha cercato di puntare sull'offerta di FerrovieItaliane che offre certe tratte a prezzi 
+tutto sommato contenuti (pur impiegandoci poco tempo), mentre per colmare le rimanenti tratte ha puntato sulle due compagnie di autotrasporti BusTravel e FastBus, 
+che però offrono tempi maggiori di percorrenza. In entrambi i casi il budget è consumato quasi del tutto, ma è presente una notevole differenza fra il valore finale 
+della funzione obiettivo nel primo e nel secondo file: nel secondo caso infatti si impiegano ben 4.20h in meno, corrispondenti quasi al tempo medio di una tratta in 
+questo tragitto.
 
 \subsection*{Tragitto: Milano $\leftrightarrow$ Roma}
 Viene richiesta una pianificazione con questi dati:
@@ -84,26 +91,26 @@ Viene richiesta una pianificazione con questi dati:
     \item Budget (massimo): \e{400};
     \item Durata (massima di una tratta): 8.5h;
     \item Numero viaggi da pianificare: 8;
-    \item Dati\_MiRm\_0.dat: $maxTratte^T = [16,16,4,2]$;
-    \item Dati\_MiRm\_1.dat: $maxTratte^T = [16,16,16,16]$.
+    \item con Dati\_MiRm\_0.dat: $maxTratte^T = [16,16,4,2]$;
+    \item con Dati\_MiRm\_1.dat: $maxTratte^T = [16,16,16,16]$.
 \end{itemize}
 Il risultato ottenuto è il seguente:
 \begin{itemize}
-    \item valore della funzione obiettivo:
+    \item totale di ore in viaggio minime per la pianificazione richiesta:
     \begin{itemize}
-        \item Dati\_MiRm\_0.dat: 92.10h
-        \item Dati\_MiRm\_1.dat: 91.85h
+        \item con Dati\_MiRm\_0.dat: 92.10h
+        \item con Dati\_MiRm\_1.dat: 91.85h
     \end{itemize}
     \item corse selezionate (con $x_{t,c,v} > 0$):
     \begin{itemize}
-        \item Dati\_MiRm\_0.dat
+        \item con Dati\_MiRm\_0.dat
         \begin{itemize}
             \item $x_{Trenia,6,Andata} = 5$
             \item $x_{FerrovieItaliane,7,Ritorno} = 8$
             \item $x_{BusTravel,1,Andata} = 1$
             \item $x_{FastBus,1,Andata} = 2$
         \end{itemize}
-        \item Dati\_MiRm\_1.dat
+        \item con Dati\_MiRm\_1.dat
         \begin{itemize}
             \item $x_{Trenia,6,Andata} = 5$
             \item $x_{FerrovieItaliane,7,Ritorno} = 8$
@@ -112,14 +119,14 @@ Il risultato ottenuto è il seguente:
     \end{itemize}
     \item budget impiegato per ogni compagnia (con $b_t > 0$):
     \begin{itemize}
-        \item Dati\_MiRm\_0.dat
+        \item con Dati\_MiRm\_0.dat
         \begin{itemize}
             \item $b_{Trenia} = 199.50$ euro (usando la gift card di 15.00 euro)
             \item $b_{FerrovieItaliane} = 149.20$ euro (usando la gift card di 10.00 euro)
             \item $b_{BusTravel} =  8.99$ euro (usando la gift card di 10.00 euro)
             \item $b_{FastBus} = 33.80$ euro
         \end{itemize}
-        \item Dati\_MiRm\_1.dat
+        \item con Dati\_MiRm\_1.dat
         \begin{itemize}
             \item $b_{Trenia} = 199.50$ euro (usando la gift card di 15.00 euro)
             \item $b_{FerrovieItaliane} = 149.20$ euro (usando la gift card di 10.00 euro)
@@ -127,6 +134,12 @@ Il risultato ottenuto è il seguente:
         \end{itemize}
     \end{itemize}
 \end{itemize}
+In questo caso invece, con le due istanze fornite i risultati dell'esecuzione del problema non sono granché differenti: i valori delle funzioni obiettivo 
+distano di solo 0.25h. Sono stati volontariamente inseriti in questo modo per mostrare come il modello tenda in ogni caso a prediligere le compagnie Trenia e 
+FerrovieItaliane dato che in quest'istanza di problema offrono tratte con durata minore. È cambiato invece di quasi \e{8} la differenza di prezzo, ovvero a 
+circa \e{8} in più si ottiene una diminuzione del tempo totale di solo 15 minuti (0.25h corrisponde ad un quarto d'ora). Questo può indicare come aggiustando 
+certi parametri (in questo caso $maxTratte$) si possa ottenere una diminuzione del prezzo finale, a discapito di un piccolo aumento del tempo di percorrenza, 
+che è comunque un altro fattore importante per il principale target del sito web ``Viaggiare LeggeRO": lo studente.
 
 \subsection*{Tragitto: Bologna $\leftrightarrow$ Bolzano}
 Viene richiesta una pianificazione con questi dati:
@@ -134,19 +147,19 @@ Viene richiesta una pianificazione con questi dati:
     \item Budget (massimo): \e{100};
     \item Durata (massima di una tratta): 4h;
     \item Numero viaggi da pianificare: 4;
-    \item Dati\_BoBz\_0.dat: $maxTratte^T = [1,1,2,3,1]$;
-    \item Dati\_BoBz\_1.dat: $maxTratte^T = [8,8,8,8,8]$.
+    \item con Dati\_BoBz\_0.dat: $maxTratte^T = [1,1,2,3,1]$;
+    \item con Dati\_BoBz\_1.dat: $maxTratte^T = [8,8,8,8,8]$.
 \end{itemize}
 Il risultato ottenuto è il seguente:
 \begin{itemize}
-    \item valore della funzione obiettivo:
+    \item totale di ore in viaggio minime per la pianificazione richiesta:
     \begin{itemize}
-        \item Dati\_BoBz\_0.dat: 25.70h
-        \item Dati\_BoBz\_1.dat: 23.45h
+        \item con Dati\_BoBz\_0.dat: 25.70h
+        \item con Dati\_BoBz\_1.dat: 23.45h
     \end{itemize}
     \item corse selezionate (con $x_{t,c,v} > 0$):
     \begin{itemize}
-        \item Dati\_BoBz\_0.dat
+        \item con Dati\_BoBz\_0.dat
         \begin{itemize}
             \item $x_{Trenia,2,Andata} = 1$
             \item $x_{FerrovieItaliane,5,Andata} = 1$
@@ -154,7 +167,7 @@ Il risultato ottenuto è il seguente:
             \item $x_{BusTravel,5,Ritorno} = 3$
             \item $x_{FastBus,2,Ritorno} = 1$
         \end{itemize}
-        \item Dati\_BoBz\_1.dat
+        \item con Dati\_BoBz\_1.dat
         \begin{itemize}
             \item $x_{Trenia,1,Andata} = 1$
             \item $x_{Trenia,2,Andata} = 3$
@@ -164,7 +177,7 @@ Il risultato ottenuto è il seguente:
     \end{itemize}
     \item budget impiegato per ogni compagnia (con $b_t > 0$):
     \begin{itemize}
-        \item Dati\_BoBz\_0.dat
+        \item con Dati\_BoBz\_0.dat
         \begin{itemize}
             \item $b_{Trenia} = 20.90$ euro
             \item $b_{FerrovieItaliane} = 19.90$ euro
@@ -172,12 +185,16 @@ Il risultato ottenuto è il seguente:
             \item $b_{BusTravel} = 13.97$ euro (usando la gift card di 10.00 euro)
             \item $b_{FastBus} = 8.90$ euro
         \end{itemize}
-        \item Dati\_BoBz\_1.dat
+        \item con Dati\_BoBz\_1.dat
         \begin{itemize}
             \item $b_{Trenia} = 85.50$ euro (usando la gift card di 15.00 euro)
             \item $b_{BusTravel} = 13.97$ euro (usando la gift card di 10.00 euro)
         \end{itemize}
     \end{itemize}
 \end{itemize}
+In questa istanza di problema invece si può osservare come le forti limitazioni imposte al numero di tratte in Dati\_BoBz\_0.dat non hanno fatto
+cambiare molto la spesa totale da Dati\_BoBz\_1.dat, nonostante la distribuzione della spesa sia invece passata da 5 a 2 compagnie. Ciò che invece è cambiato
+molto, seppur possa non sembrare, è il valore della funzione obiettivo: rimuovendo le limitazioni infatti le ore viaggiate diminuiscono di 2.25 che, un po' come 
+nel tragitto Padova $\leftrightarrow$ Torino, corrispondono a uno dei tempi minori fra le tratte a disposizione.
 
 \end{document}
