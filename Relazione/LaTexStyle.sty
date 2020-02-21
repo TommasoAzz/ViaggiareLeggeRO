@@ -1,6 +1,7 @@
 \ProvidesPackage{LaTexStyle}
 \usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
 \usepackage{subfiles}
 \usepackage{flafter}
 \usepackage{graphicx}
@@ -15,5 +16,16 @@
 \usepackage{verbatim}
 \usepackage{xcolor}
 \usepackage[most]{tcolorbox}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt} 
+\fancyhf{}
+\fancyhead[L]{Viaggiare LeggeRO}
+\fancyhead[R]{Progetto di Ricerca Operativa}
+\fancyfoot[L]{Tommaso Azzalin}
+\fancyfoot[R]{Pagina \thepage\ di \pageref{LastPage}}
+\setlength{\headheight}{13.6pt}
 
 \newcommand{\e}[1]{#1 \euro{}}
