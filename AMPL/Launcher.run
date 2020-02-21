@@ -1,7 +1,7 @@
 # Progetto di Ricerca Operativa, A.A. 2019/2020
 # Tommaso Azzalin, matricola: 1169740
 #
-# Modello del problema "Viaggiare LeggeRO"
+# Launcher del problema "Viaggiare LeggeRO"
 
 printf "---------------------\n| Viaggiare LeggeRO |\n---------------------\n\n";
 
