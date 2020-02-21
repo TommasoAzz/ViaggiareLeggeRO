@@ -52,7 +52,7 @@ Le variabili individuate sono le seguenti (in ordine alfabetico):
 \textbf{N.B.} Sono da tenere in considerazione le seguenti:
 \begin{itemize}
     \item $0 \in \mathbb{R}_+, \mathbb{Z}_+$;
-    \item una corsa può essere scelta se la sua durata è inferiore o uguale alla massima durata per corsa richiesta (condizione necessaria ma non sufficiente).
+    \item una corsa può essere scelta solo se la sua durata è inferiore o uguale alla massima durata per tratta richiesta (condizione necessaria ma non sufficiente).
 \end{itemize}
 
 \subsection{Parametri}
@@ -77,7 +77,7 @@ $$min \sum_{t\; \in\; T} \sum_{c\; \in\; C} \sum_{v\; \in\; V} d_{t,c,v} \times{
 $s.t.$
 \end{tcolorbox}
 
-Il budget totale a disposizione viene diviso per tutte le compagnie (è necessario per applicare correttamente gli sconti dati dalle gift card):
+Il budget totale a disposizione viene diviso per tutte le compagnie $t \in T$ (è necessario per applicare correttamente gli sconti dati dalle gift card):
 \begin{tcolorbox}
 $$\sum_{t\; \in\; T} b_t \leq B$$
 \end{tcolorbox}
@@ -106,7 +106,8 @@ Creazione di un legame fra $x$ e $y$, infatti deve essere vero che: $\nexists y_
 \begin{tcolorbox}
 $$x_{t,c,v} \leq y_{t,c,v} \times{} N \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
 \end{tcolorbox}
-
+\textbf{N.B.} In questo caso al posto di $N$ si sarebbe potuto usare $M \in \mathbb{R}_+$, il cosiddetto "Big M", per semplicità. Ma visto che possono essere acquistate solo $N$ corse in andata, e $N$ corse in ritorno, anche considerando
+il caso in cui vengano scelti solo una corsa in andata e una in ritorno, il massimo valore assunto sarà sempre al massimo $N$.\\
 Emissione delle gift card (attivazione delle variabili binarie):
 \begin{tcolorbox}
 $$\sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \geq nViaggiGC_t \times z_t \hspace{10mm} \forall{} t \in T$$
@@ -121,7 +122,7 @@ $$z_t \in \{0,1\} \hspace{10mm} \forall{} t \in T$$
 \end{tcolorbox}
 
 \subsection{Valori spuri}
-Si vuole discutere la possibilità che nel modello si presentino valori spuri in certe variabili.\\
+Si vuole discutere la possibilità che nel modello si presentino valori spuri in alcune variabili.\\
 Nel primo vincolo di attivazione delle variabili binarie:
 \begin{tcolorbox}
     $$x_{t,c,v} \leq y_{t,c,v} \times{} N \hspace{10mm} \forall{} t \in T, \forall{} c \in C, \forall{} v \in V$$
@@ -139,7 +140,7 @@ Nel secondo vincolo di attivazione delle variabili binarie:
 \end{tcolorbox}
 sarebbe possibile che $\exists{} t \in T\; t.c.\; \sum_{c\; \in\; C} \sum_{v\; \in\; V} x_{t,c,v} \geq nViaggiGC_t \times z_t$ ma con $z_t = 0$.\\
 Chiaramente $z_t = 0$ starebbe a dire che per la compagnia $t \in T$ l'utilizzo della gift card è precluso, comportando una minore disponibilità di budget che potrebbe
-portare ad una soluzione ammissibile (ma non ottima) o addirittura a non ammissibile. Per questo motivo, nel secondo vincolo del modello (sul budget complessivo) si tiene conto anche dell'emissione
+portare ad una soluzione ammissibile (ma non ottima) o addirittura non ammissibile. Per questo motivo, nel secondo vincolo del modello (sul budget complessivo) si tiene conto anche dell'emissione
 delle gift card.
 
 \end{document}
